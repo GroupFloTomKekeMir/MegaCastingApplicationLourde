@@ -17,6 +17,7 @@ public class Utilisateur {
     private String password;
     private String nom;
     private String prenom;
+    private String nom_artiste;
     private int age;
     private String mail;
     private String telephone;
@@ -63,6 +64,14 @@ public class Utilisateur {
         this.prenom = prenom;
     }
 
+    public String getNom_artiste() {
+        return nom_artiste;
+    }
+
+    public void setNom_artiste(String nom_artiste) {
+        this.nom_artiste = nom_artiste;
+    }
+    
     public int getAge() {
         return age;
     }
@@ -103,17 +112,20 @@ public class Utilisateur {
         this.descr_util = descr_util;
     }
 
-    public Utilisateur(String login, String password, String nom, String prenom, int age, String mail, String telephone, Adresse Adresse, String descr_util) {
+    public Utilisateur(String login, String password, String nom, String prenom, String nom_artiste, int age, String mail, String telephone, Adresse Adresse, String descr_util) {
         this.login = login;
         this.password = password;
         this.nom = nom;
         this.prenom = prenom;
+        this.nom_artiste = nom_artiste;
         this.age = age;
         this.mail = mail;
         this.telephone = telephone;
         this.Adresse = Adresse;
         this.descr_util = descr_util;
     }
+
+    
 
     @Override
     public boolean equals(Object obj) {
@@ -134,6 +146,9 @@ public class Utilisateur {
             return false;
         }
         if (!Objects.equals(this.prenom, other.prenom)) {
+            return false;
+        }
+        if (!Objects.equals(this.nom_artiste, other.nom_artiste)) {
             return false;
         }
         if (this.age != other.age) {
