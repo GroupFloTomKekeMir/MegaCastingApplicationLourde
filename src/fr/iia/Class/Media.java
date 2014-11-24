@@ -5,6 +5,8 @@
  */
 package fr.iia.Class;
 
+import java.util.Objects;
+
 /**
  *
  * @author Enzo
@@ -13,12 +15,15 @@ public class Media {
     private int id;
     private String nom;
     private int taille;
-    private Offre Offre;
-    private Utilisateur Utilisateur;
     private TypeMedia TypeMedia;
-    private Annonceur Annonceur;
-    private Musique Musique;
-    private Evenement Evenement;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNom() {
         return nom;
@@ -36,22 +41,6 @@ public class Media {
         this.taille = taille;
     }
 
-    public Offre getOffre() {
-        return Offre;
-    }
-
-    public void setOffre(Offre Offre) {
-        this.Offre = Offre;
-    }
-
-    public Utilisateur getUtilisateur() {
-        return Utilisateur;
-    }
-
-    public void setUtilisateur(Utilisateur Utilisateur) {
-        this.Utilisateur = Utilisateur;
-    }
-
     public TypeMedia getTypeMedia() {
         return TypeMedia;
     }
@@ -60,38 +49,36 @@ public class Media {
         this.TypeMedia = TypeMedia;
     }
 
-    public Annonceur getAnnonceur() {
-        return Annonceur;
-    }
-
-    public void setAnnonceur(Annonceur Annonceur) {
-        this.Annonceur = Annonceur;
-    }
-
-    public Musique getMusique() {
-        return Musique;
-    }
-
-    public void setMusique(Musique Musique) {
-        this.Musique = Musique;
-    }
-
-    public Evenement getEvenement() {
-        return Evenement;
-    }
-
-    public void setEvenement(Evenement Evenement) {
-        this.Evenement = Evenement;
-    }
-
-    public Media(String nom, int taille, Offre Offre, Utilisateur Utilisateur, TypeMedia TypeMedia, Annonceur Annonceur, Musique Musique, Evenement Evenement) {
+    public Media(String nom, int taille, TypeMedia TypeMedia) {
         this.nom = nom;
         this.taille = taille;
-        this.Offre = Offre;
-        this.Utilisateur = Utilisateur;
         this.TypeMedia = TypeMedia;
-        this.Annonceur = Annonceur;
-        this.Musique = Musique;
-        this.Evenement = Evenement;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Media other = (Media) obj;
+        if (!Objects.equals(this.nom, other.nom)) {
+            return false;
+        }
+        if (this.taille != other.taille) {
+            return false;
+        }
+        if (!Objects.equals(this.TypeMedia, other.TypeMedia)) {
+            return false;
+        }
+        return true;
     }
 }

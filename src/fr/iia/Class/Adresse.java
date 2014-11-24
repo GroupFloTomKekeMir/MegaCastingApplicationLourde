@@ -5,12 +5,12 @@ import java.util.Objects;
 
 public class Adresse {
 
-	private int id;
-	private int numero;
-	private int codePostal;
-	private String rue;
-	private String ville;
-        private String localisation;
+    private int id;
+    private int numero;
+    private int codePostal;
+    private String rue;
+    private String ville;
+    private String localisation;
 
     public int getId() {
         return id;

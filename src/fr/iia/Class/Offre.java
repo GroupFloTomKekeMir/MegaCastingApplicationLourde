@@ -22,7 +22,7 @@ public class Offre {
     private String description_poste;
     private String description_profil;
     private int telephone;
-    private int nrb_visite;
+    private int nbr_visite;
     private Contrat Contrat;
     private Annonceur Annonceur;
     private Diffuseur Diffuseur;
@@ -100,12 +100,12 @@ public class Offre {
         this.telephone = telephone;
     }
 
-    public int getNrb_visite() {
-        return nrb_visite;
+    public int getNbr_visite() {
+        return nbr_visite;
     }
 
-    public void setNrb_visite(int nrb_visite) {
-        this.nrb_visite = nrb_visite;
+    public void setNbr_visite(int nbr_visite) {
+        this.nbr_visite = nbr_visite;
     }
 
     public Contrat getContrat() {
@@ -149,7 +149,7 @@ public class Offre {
         this.description_poste = description_poste;
         this.description_profil = description_profil;
         this.telephone = telephone;
-        this.nrb_visite = nrb_visite;
+        this.nbr_visite = nbr_visite;
         this.Contrat = Contrat;
         this.Annonceur = Annonceur;
         this.Diffuseur = Diffuseur;
@@ -189,7 +189,7 @@ public class Offre {
         if (this.telephone != other.telephone) {
             return false;
         }
-        if (this.nrb_visite != other.nrb_visite) {
+        if (this.nbr_visite != other.nbr_visite) {
             return false;
         }
         if (!Objects.equals(this.Contrat, other.Contrat)) {

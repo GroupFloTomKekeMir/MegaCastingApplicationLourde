@@ -15,8 +15,9 @@ public class Diffuseur {
     private int id;
     private String nom;
     private String mail;
-    private int numeroTel;
+    private String numeroTel;
     private Adresse Adresse;
+    private Media Media;
 
 
     public int getId() {
@@ -51,15 +52,15 @@ public class Diffuseur {
         this.mail = mail;
     }
 
-    public int getNumeroTel() {
+    public String getNumeroTel() {
         return numeroTel;
     }
 
-    public void setNumeroTel(int numeroTel) {
+    public void setNumeroTel(String numeroTel) {
         this.numeroTel = numeroTel;
     }
 
-    public Diffuseur(String nom, String mail, int numeroTel, Adresse Adresse) {
+    public Diffuseur(String nom, String mail, String numeroTel, Adresse Adresse) {
         this.nom = nom;
         this.mail = mail;
         this.numeroTel = numeroTel;

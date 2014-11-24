@@ -14,8 +14,9 @@ import java.util.Objects;
 public class Musique {
     private int id;
     private String titre;
-    private String genre;
+    private String artiste;
     private String description;
+    private String genre;
     private Utilisateur Utilisateur;
 
     public int getId() {
@@ -34,20 +35,20 @@ public class Musique {
         this.titre = titre;
     }
 
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public Utilisateur getUtilisateur() {
@@ -58,10 +59,10 @@ public class Musique {
         this.Utilisateur = Utilisateur;
     }
 
-    public Musique(String titre, String genre, String description, Utilisateur Utilisateur) {
+    public Musique(String titre, String description, String genre, Utilisateur Utilisateur) {
         this.titre = titre;
-        this.genre = genre;
         this.description = description;
+        this.genre = genre;
         this.Utilisateur = Utilisateur;
     }
 
@@ -77,10 +78,10 @@ public class Musique {
         if (!Objects.equals(this.titre, other.titre)) {
             return false;
         }
-        if (!Objects.equals(this.genre, other.genre)) {
+        if (!Objects.equals(this.description, other.description)) {
             return false;
         }
-        if (!Objects.equals(this.description, other.description)) {
+        if (!Objects.equals(this.genre, other.genre)) {
             return false;
         }
         if (!Objects.equals(this.Utilisateur, other.Utilisateur)) {
@@ -88,6 +89,4 @@ public class Musique {
         }
         return true;
     }
-    
-    
 }

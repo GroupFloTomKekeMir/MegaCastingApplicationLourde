@@ -18,8 +18,8 @@ public class AdresseDAO {
 		PreparedStatement pstmt = null;
 		try{
 			pstmt = cnx.prepareStatement("INSERT INTO Adresse"
-										+ " (numero, rue, codePostal, ville, localisation)"
-										+ " VALUES (?, ?, ?, ?)");
+                                                    + " (numero, rue, codePostal, ville, localisation)"
+                                                    + " VALUES (?, ?, ?, ?)");
 				
 			pstmt.setInt(1, adr.getNumero() );
 			pstmt.setString(2, adr.getRue());
@@ -83,9 +83,7 @@ public class AdresseDAO {
 			stmt = cnx.createStatement();
 			stmt.executeUpdate("DELETE Adresse SET numero = " + adr.getNumero() + ", codePostal = " + adr.getCodePostal() + ", rue = '" + adr.getRue() + "', ville = '" + adr.getVille() + "', localisation = '" + adr.getLocalisation() + "'");
 						
-			System.out.println("Suppression réussie.");
-			
-			
+			System.out.println("Suppression réussie.");	
 		}catch(Exception ex){
 			ex.printStackTrace();
 			System.out.println("Suppression échouée.");
@@ -120,12 +118,7 @@ public class AdresseDAO {
 				Adresse adrResult = new Adresse(numero, codePostal, rue, ville, localisation);
 				adrResult.setNumero(numero);
 				adrResult.setId(id);
-			}
-			
-
-			
-			
-			
+			}	
 		}catch(Exception ex){
 			ex.printStackTrace();
 			System.out.println("Echec lister");

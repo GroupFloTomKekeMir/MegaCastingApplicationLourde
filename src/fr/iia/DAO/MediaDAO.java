@@ -9,6 +9,6 @@ package fr.iia.DAO;
  *
  * @author Enzo
  */
-public class Media {
+public class MediaDAO {
     
 }

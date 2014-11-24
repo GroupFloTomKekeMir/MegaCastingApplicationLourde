@@ -15,9 +15,9 @@ public class Annonceur {
     private int id;
     private String nom;
     private String mail;
-    private int numeroTel;
+    private String numeroTel;
     private Adresse Adresse;
-
+    private Media Media;
 
     public int getId() {
         return id;
@@ -51,15 +51,15 @@ public class Annonceur {
         this.mail = mail;
     }
 
-    public int getNumeroTel() {
+    public String getNumeroTel() {
         return numeroTel;
     }
 
-    public void setNumeroTel(int numeroTel) {
+    public void setNumeroTel(String numeroTel) {
         this.numeroTel = numeroTel;
     }
 
-    public Annonceur(String nom, String mail, int numeroTel, Adresse Adresse) {
+    public Annonceur(String nom, String mail, String numeroTel, Adresse Adresse) {
         this.nom = nom;
         this.mail = mail;
         this.numeroTel = numeroTel;
