@@ -8,7 +8,6 @@ package fr.iia.DAO;
 import fr.iia.Class.Adresse;
 import fr.iia.Class.Annonceur;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -62,12 +61,12 @@ public class AnnonceursDAO {
 		Statement stmt = null;
 		try{			
 			stmt = cnx.createStatement();
-			ResultSet rs = stmt.executeQuery("Select id, adresse, mail, telephone From Personne WHERE nom = '" + nom + "';");
+			ResultSet rs = stmt.executeQuery("Select id_annonceur, adresse, mail, telephone From Personne WHERE nom = '" + nom + "';");
 			if(rs.next()){
 				int idAdr = rs.getInt("adresse");
 				
 				Adresse adr = AdresseDAO.trouver(cnx, idAdr);
-				int id = rs.getInt("id");
+				int id = rs.getInt("id_annonceur");
 				String mail = rs.getString("mail");
                                 String numeroTel = rs.getString("telephone");
 				annonceur = new Annonceur(nom, adr, mail, numeroTel);
@@ -95,7 +94,7 @@ public class AnnonceursDAO {
 		Statement stmt = null;
 		try{			
 			stmt = cnx.createStatement();
-			stmt.executeUpdate("DELETE FROM annonceur WHERE id = " + annonceur.getId() );
+			stmt.executeUpdate("DELETE FROM annonceur WHERE id_annonceur = " + annonceur.getId() );
 		
 			AdresseDAO.supprimer(cnx, annonceur.getAdresse());
 		}catch(Exception ex){
@@ -121,7 +120,7 @@ public class AnnonceursDAO {
 			stmt = cnx.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT id_annonceur, nom, adresse, mail, numeroTel FROM annonceur");
 			while(rs.next()){
-				int id = rs.getInt("id");
+				int id = rs.getInt("id_annonceur");
 				String nom = rs.getString("nom");
 				String mail = rs.getString("mail");
 				String numeroTel = rs.getString("numeroTel");
@@ -137,7 +136,7 @@ public class AnnonceursDAO {
 			
 		}catch(Exception ex){
 			ex.printStackTrace();
-			System.out.println("Echec lister personne");
+			System.out.println("Echec lister annonceur");
 		}finally{
 			if(stmt != null){
 				try {

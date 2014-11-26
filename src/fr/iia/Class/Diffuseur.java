@@ -14,9 +14,9 @@ import java.util.Objects;
 public class Diffuseur {
     private int id;
     private String nom;
-    private String mail;
-    private String numeroTel;
     private Adresse Adresse;
+    private String mail;
+    private String numeroTel;    
     private Media Media;
 
 
@@ -60,11 +60,11 @@ public class Diffuseur {
         this.numeroTel = numeroTel;
     }
 
-    public Diffuseur(String nom, String mail, String numeroTel, Adresse Adresse) {
+    public Diffuseur(String nom, Adresse Adresse, String mail, String numeroTel) {
         this.nom = nom;
-        this.mail = mail;
-        this.numeroTel = numeroTel;
         this.Adresse = Adresse;
+        this.mail = mail;
+        this.numeroTel = numeroTel;        
     }
 
     @Override
