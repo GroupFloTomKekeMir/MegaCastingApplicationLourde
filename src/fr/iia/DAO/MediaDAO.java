@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 public class MediaDAO {
     
-    public static void creer(Connection cnx, Media med){
+    public static void creer(Connection cnx, Media med, TypeMedia typeMedia){
                
         Statement stmt = null;
 
@@ -39,7 +39,7 @@ public class MediaDAO {
         
         catch(Exception ex){
                 ex.printStackTrace();
-                System.out.println("Echec creer personne");
+                System.out.println("Echec creer metier");
         }
         
         finally{
@@ -58,7 +58,7 @@ public class MediaDAO {
         Statement stmt = null;
         try{			
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("Select nom, taille, id_type From Personne WHERE id_media = '" + id + "';");
+            ResultSet rs = stmt.executeQuery("Select nom, taille, id_type From media WHERE id_media = '" + id + "';");
             if(rs.next()){
                 
                 int idType = rs.getInt("id_type");
@@ -75,7 +75,7 @@ public class MediaDAO {
 
         }catch(Exception ex){
             ex.printStackTrace();
-            System.out.println("Echec trouver personne");
+            System.out.println("Echec trouver metier");
         }finally{
             if(stmt != null){
                 try {

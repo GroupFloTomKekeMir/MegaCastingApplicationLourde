@@ -22,7 +22,6 @@ public class Offre {
     private String description_poste;
     private String description_profil;
     private int telephone;
-    private int nbr_visite;
     private int duree;
     private Contrat Contrat;
     private Annonceur Annonceur;
@@ -100,14 +99,6 @@ public class Offre {
     public void setTelephone(int telephone) {
         this.telephone = telephone;
     }
-
-    public int getNbr_visite() {
-        return nbr_visite;
-    }
-
-    public void setNbr_visite(int nbr_visite) {
-        this.nbr_visite = nbr_visite;
-    }
     
     public int getDuree() {
         return duree;
@@ -149,7 +140,7 @@ public class Offre {
         this.Metier = Metier;
     }
 
-    public Offre(String titre, String reference, Date date_debut_publi, Date fin_publi, int nbr_poste, String description_poste, String description_profil, int telephone, int nrb_visite, Contrat Contrat, Annonceur Annonceur, Diffuseur Diffuseur, Metier Metier) {
+    public Offre(String titre, String reference, Date date_debut_publi, Date fin_publi, int nbr_poste, String description_poste, String description_profil, int telephone, Contrat Contrat, Annonceur Annonceur, Diffuseur Diffuseur, Metier Metier) {
         this.titre = titre;
         this.reference = reference;
         this.date_debut_publi = date_debut_publi;
@@ -158,7 +149,6 @@ public class Offre {
         this.description_poste = description_poste;
         this.description_profil = description_profil;
         this.telephone = telephone;
-        this.nbr_visite = nbr_visite;
         this.Contrat = Contrat;
         this.Annonceur = Annonceur;
         this.Diffuseur = Diffuseur;
@@ -196,9 +186,6 @@ public class Offre {
             return false;
         }
         if (this.telephone != other.telephone) {
-            return false;
-        }
-        if (this.nbr_visite != other.nbr_visite) {
             return false;
         }
         if (!Objects.equals(this.Contrat, other.Contrat)) {
