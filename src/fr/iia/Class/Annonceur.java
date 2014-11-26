@@ -14,9 +14,9 @@ import java.util.Objects;
 public class Annonceur {
     private int id;
     private String nom;
-    private String mail;
-    private String numeroTel;
     private Adresse Adresse;
+    private String mail;
+    private String numeroTel;    
     private Media Media;
 
     public int getId() {
@@ -59,11 +59,12 @@ public class Annonceur {
         this.numeroTel = numeroTel;
     }
 
-    public Annonceur(String nom, String mail, String numeroTel, Adresse Adresse) {
+    public Annonceur(String nom, Adresse Adresse, String mail, String numeroTel) {
         this.nom = nom;
+        this.Adresse = Adresse;
         this.mail = mail;
         this.numeroTel = numeroTel;
-        this.Adresse = Adresse;
+        
     }
 
     @Override
@@ -78,15 +79,16 @@ public class Annonceur {
         if (!Objects.equals(this.nom, other.nom)) {
             return false;
         }
+        if (!Objects.equals(this.Adresse, other.Adresse)) {
+            return false;
+        }
         if (!Objects.equals(this.mail, other.mail)) {
             return false;
         }
         if (this.numeroTel != other.numeroTel) {
             return false;
         }
-        if (!Objects.equals(this.Adresse, other.Adresse)) {
-            return false;
-        }
+        
         return true;
     }
 }
