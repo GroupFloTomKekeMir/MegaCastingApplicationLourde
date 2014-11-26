@@ -23,6 +23,7 @@ public class Offre {
     private String description_profil;
     private int telephone;
     private int nbr_visite;
+    private int duree;
     private Contrat Contrat;
     private Annonceur Annonceur;
     private Diffuseur Diffuseur;
@@ -106,6 +107,14 @@ public class Offre {
 
     public void setNbr_visite(int nbr_visite) {
         this.nbr_visite = nbr_visite;
+    }
+    
+    public int getDuree() {
+        return duree;
+    }
+
+    public void setDuree(int duree) {
+        this.duree = duree;
     }
 
     public Contrat getContrat() {

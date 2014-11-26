@@ -14,7 +14,6 @@ import java.util.Objects;
 public class Contrat {
     private int id;
     private String libelle;
-    private int duree;
 
     public int getId() {
         return id;
@@ -32,17 +31,8 @@ public class Contrat {
         this.libelle = libelle;
     }
 
-    public int getDuree() {
-        return duree;
-    }
-
-    public void setDuree(int duree) {
-        this.duree = duree;
-    }
-
-    public Contrat(String libelle, int duree) {
+    public Contrat(String libelle) {
         this.libelle = libelle;
-        this.duree = duree;
     }
 
     @Override
@@ -55,9 +45,6 @@ public class Contrat {
         }
         final Contrat other = (Contrat) obj;
         if (!Objects.equals(this.libelle, other.libelle)) {
-            return false;
-        }
-        if (this.duree != other.duree) {
             return false;
         }
         return true;
