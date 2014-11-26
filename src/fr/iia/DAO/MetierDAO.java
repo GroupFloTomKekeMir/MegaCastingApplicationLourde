@@ -5,6 +5,13 @@
  */
 package fr.iia.DAO;
 
+import fr.iia.Class.Domaine;
+import fr.iia.Class.Metier;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author Enzo

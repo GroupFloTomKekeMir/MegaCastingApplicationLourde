@@ -18,44 +18,41 @@ import java.sql.Statement;
  */
 public class UtilisateurDAO {
     public static Utilisateur trouver(Connection cnx, String nom_artiste){
-		Utilisateur utilisateur = null;
-		Statement stmt = null;
-		try{			
-			stmt = cnx.createStatement();
-			ResultSet rs = stmt.executeQuery("Select nom, prenom, idAdr From Personne WHERE nom_artiste = '" + nom_artiste + "';");
-			if(rs.next()){
-				int idAdr = rs.getInt("idAdr");
-				
-				Adresse adresse = AdresseDAO.trouver(cnx , idAdr);
-                                String login = rs.getString("login");
-                                String password = rs.getString("password");
-                                String nom = rs.getString("nom");
-                                String prenom = rs.getString("prenom");
-                                String mail = rs.getString("mail");
-                                String telephone = rs.getString("telephone");
-                                String descr_util = rs.getString("descr_util");
-				int age = rs.getInt("age");
-				int id = rs.getInt("id");
-				
-				utilisateur = new Utilisateur(login, password, nom, prenom, nom_artiste, age, mail, telephone, adresse, descr_util);
-				utilisateur.setId(id);
-			}
-			
-		}catch(Exception ex){
-			ex.printStackTrace();
-			System.out.println("Echec trouver personne");
-		}finally{
-			if(stmt != null){
-				try {
-					stmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		
-		
-		
-		return utilisateur;
-	}
+        Utilisateur utilisateur = null;
+        Statement stmt = null;
+        try{			
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select nom, prenom, idAdr From Personne WHERE nom_artiste = '" + nom_artiste + "';");
+            if(rs.next()){
+                int idAdr = rs.getInt("idAdr");
+
+                Adresse adresse = AdresseDAO.trouver(cnx , idAdr);
+                String login = rs.getString("login");
+                String password = rs.getString("password");
+                String nom = rs.getString("nom");
+                String prenom = rs.getString("prenom");
+                String mail = rs.getString("mail");
+                String telephone = rs.getString("telephone");
+                String descr_util = rs.getString("descr_util");
+                int age = rs.getInt("age");
+                int id = rs.getInt("id");
+
+                utilisateur = new Utilisateur(login, password, nom, prenom, nom_artiste, age, mail, telephone, adresse, descr_util);
+                utilisateur.setId(id);
+            }	
+        }
+        catch(Exception ex){
+                ex.printStackTrace();
+                System.out.println("Echec trouver personne");
+        }finally{
+            if(stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return utilisateur;
+    }
 }
