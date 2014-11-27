@@ -96,6 +96,41 @@ public class MetierDAO {
         return metier;
     }
     
+    public static Metier trouver(Connection cnx, int id){
+        Metier metier = null;
+        Statement stmt = null;
+        try{			
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select libelle, id_domaine From metier WHERE id_metier = '" + id + "';");
+            if(rs.next()){
+                
+                int idDom = rs.getInt("id_domaine");
+
+                Domaine domaine = DomaineDAO.trouver(cnx, idDom);
+                
+                String libelle = rs.getString("libelle");
+
+                metier = new Metier(libelle, domaine);
+                //personne.setAge(age);
+                metier.setId(id);
+            }
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+            System.out.println("Echec trouver metier");
+        }finally{
+            if(stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return metier;
+    }
+    
     public static void supprimer(Connection cnx, Metier metier){
 
         Statement stmt = null;

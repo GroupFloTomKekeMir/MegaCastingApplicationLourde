@@ -89,6 +89,39 @@ public class AnnonceursDAO {
 		return annonceur;
 	}
         
+        public static Annonceur trouver(Connection cnx, int id){
+		Annonceur annonceur = null;
+		Statement stmt = null;
+		try{			
+			stmt = cnx.createStatement();
+			ResultSet rs = stmt.executeQuery("Select nom, adresse, mail, telephone From Personne WHERE id_annonceur = '" + id + "';");
+			if(rs.next()){
+				int idAdr = rs.getInt("adresse");
+				
+				Adresse adr = AdresseDAO.trouver(cnx, idAdr);
+				String nom = rs.getString("nom");
+				String mail = rs.getString("mail");
+                                String numeroTel = rs.getString("telephone");
+				annonceur = new Annonceur(nom, adr, mail, numeroTel);
+				
+				annonceur.setId(id);				
+			}
+			
+		}catch(Exception ex){
+			ex.printStackTrace();
+			System.out.println("Echec trouver annonceur");
+		}finally{
+			if(stmt != null){
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}		
+		return annonceur;
+	}
+        
         public static void supprimer(Connection cnx, Annonceur annonceur){
 		
 		Statement stmt = null;

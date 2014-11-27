@@ -88,6 +88,39 @@ public class DiffuseursDAO {
         }		
         return diffuseur;
     }
+    
+    public static Diffuseur trouver(Connection cnx, int id){
+        Diffuseur diffuseur = null;
+        Statement stmt = null;
+        try{			
+            stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select nom, adresse, mail, telephone From diffuseur WHERE id_diffuseur = '" + id + "';");
+            if(rs.next()){
+                int idAdr = rs.getInt("adresse");
+
+                Adresse adr = AdresseDAO.trouver(cnx, idAdr);
+                String nom = rs.getString("nom");
+                String mail = rs.getString("mail");
+                String numeroTel = rs.getString("telephone");
+                diffuseur = new Diffuseur(nom, adr, mail, numeroTel);
+
+                diffuseur.setId(id);				
+            }
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+            System.out.println("Echec trouver diffuseur");
+        }finally{
+            if(stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }		
+        return diffuseur;
+    }
         
     public static void supprimer(Connection cnx, Diffuseur diffuseur){
 

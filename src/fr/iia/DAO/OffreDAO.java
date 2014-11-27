@@ -22,7 +22,7 @@ import java.util.Date;
  * @author Enzo
  */
 public class OffreDAO {
-    public static void creer(Connection cnx, Offre off, Annonceur ann, Contrat cont, Diffuseur dif, Metier met) throws Exception{
+    public static void creer(Connection cnx, Offre off) throws Exception{
                
         Offre o = trouver(cnx, off.getReference());
         
@@ -34,7 +34,19 @@ public class OffreDAO {
 
         try{
             stmt = stmt = cnx.createStatement();
-            stmt.executeUpdate("INSERT INTO offre (titre, reference, date_debut_publi, fin_publi, nbr_poste, descr_poste, descr_profil, duree_contrat, id_contrat, id_annonceur, id_difuseur, id_metier) Values ('" + off.getTitre() + "', '" + off.getReference() + "', '" +  off.getDate_debut_publi() + "', '" + off.getFin_publi() + "', '" + off.getNbr_poste() + "', '" + off.getDescription_poste() + "', '" + off.getDescription_profil() + "', '" + off.getContrat().getId() + "', '" + off.getAnnonceur().getId() + "', '" + off.getDiffuseur().getId() + "', '" + off.getMetier().getId() + ")" );
+            stmt.executeUpdate("INSERT INTO offre (titre, reference, date_debut_publi, fin_publi, nbr_poste, descr_poste, descr_profil, duree_contrat, "
+                    + "id_contrat, id_annonceur, id_difuseur, id_metier) "
+                    + "Values ('" + off.getTitre() + "', '" 
+                    + off.getReference() + "', '" 
+                    +  off.getDate_debut_publi() + "', '" 
+                    + off.getFin_publi() + "', '" 
+                    + off.getNbr_poste() + "', '" 
+                    + off.getDescription_poste() + "', '" 
+                    + off.getDescription_profil() + "', '" 
+                    + off.getContrat().getId() + "', '" 
+                    + off.getAnnonceur().getId() + "', '" 
+                    + off.getDiffuseur().getId() + "', '" 
+                    + off.getMetier().getId() + ")" );
 
             ResultSet rs = stmt.executeQuery("SELECT MAX(id) FROM offre");
             if (rs.next()){
@@ -68,18 +80,21 @@ public class OffreDAO {
         Statement stmt = null;
         try{			
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("Select id_offre, titre, date_debut_publi, fin_publi, nbr_poste, descr_poste, descr_profil, duree_contrat, c.libelle, d.nom, a.nom, m.libelle From offre o, contrat c, annonceur a, diffuseur d, metier m WHERE o.id_contrat = c.id_contrat AND o.id_annonceur = a.id_annonceur AND o.id_diffuseur = d.id_diffuseur AND o.id_metier = m.id_metier AND reference = '" + reference + "';");
+            ResultSet rs = stmt.executeQuery("Select id_offre, titre, date_debut_publi, fin_publi, nbr_poste, descr_poste, descr_profil, duree_contrat, "
+                    + "id_contrat, id_annonceur, id_diffuseur, id_metier "
+                    + "From offre "
+                    + "WHERE reference = '" + reference + "';");
             if(rs.next()){
                 
-                String libelleMetier = rs.getString("m.libelle");
-                String libelleContrat = rs.getString("c.libelle");
-                String nomAnnonceur = rs.getString("a.nom");
-                String nomDiffuseur = rs.getString("d.nom");
+                int idContrat = rs.getInt("id_contrat");
+                int idAnnonceur = rs.getInt("id_annonceur");
+                int idDiffuseur = rs.getInt("id_diffuseur");
+                int idMetier = rs.getInt("id_metier");
                
-                Metier metier = MetierDAO.trouver(cnx, libelleMetier);
-                Contrat contrat = ContratDAO.trouver(cnx, libelleContrat);
-                Annonceur annonceur = AnnonceursDAO.trouver(cnx, nomAnnonceur);
-                Diffuseur diffuseur = DiffuseursDAO.trouver(cnx, nomDiffuseur);
+                Metier metier = MetierDAO.trouver(cnx, idContrat);
+                Contrat contrat = ContratDAO.trouver(cnx, idAnnonceur);
+                Annonceur annonceur = AnnonceursDAO.trouver(cnx, idDiffuseur);
+                Diffuseur diffuseur = DiffuseursDAO.trouver(cnx, idMetier);
 
                 
                 int id = rs.getInt("id_offre");
@@ -140,7 +155,10 @@ public class OffreDAO {
         Statement stmt = null;
         try{			
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id_offre, titre, reference, date_debut_publi, fin_publi, nbr_poste, descr_poste, descr_profil, duree_contrat, c.libelle, d.nom, a.nom, m.libelle From offre o, contrat c, annonceur a, diffuseur d, metier m WHERE o.id_contrat = c.id_contrat AND o.id_annonceur = a.id_annonceur AND o.id_diffuseur = d.id_diffuseur AND o.id_metier = m.id_metier");
+            ResultSet rs = stmt.executeQuery("SELECT id_offre, titre, reference, date_debut_publi, fin_publi, nbr_poste, descr_poste, descr_profil, duree_contrat, "
+                    + "id_contrat, id_diffuseur, id_annonceur, id_metier "
+                    + "From offre");
+            
             while(rs.next()){
                 int id = rs.getInt("id_offre");
                 String titre = rs.getString("titre");
@@ -152,16 +170,15 @@ public class OffreDAO {
                 String descrProfil = rs.getString("descr_profil");
                 int dureeContrat = rs.getInt("duree_contrat");
                
-                String libelleContrat = rs.getString("c.libelle");
-                String libelleMetier = rs.getString("m.libelle");
-                String nomAnnonceur = rs.getString("a.nom");              
-                String nomDiffuseur = rs.getString("d.nom");              
-
-
-                Contrat contrat = ContratDAO.trouver(cnx, libelleContrat);
-                Metier metier = MetierDAO.trouver(cnx, libelleMetier);
-                Annonceur annonceur = AnnonceursDAO.trouver(cnx, nomAnnonceur);
-                Diffuseur diffuseur = DiffuseursDAO.trouver(cnx, nomDiffuseur);
+                int idContrat = rs.getInt("id_contrat");
+                int idAnnonceur = rs.getInt("id_annonceur");
+                int idDiffuseur = rs.getInt("id_diffuseur");
+                int idMetier = rs.getInt("id_metier");
+               
+                Metier metier = MetierDAO.trouver(cnx, idContrat);
+                Contrat contrat = ContratDAO.trouver(cnx, idAnnonceur);
+                Annonceur annonceur = AnnonceursDAO.trouver(cnx, idDiffuseur);
+                Diffuseur diffuseur = DiffuseursDAO.trouver(cnx, idMetier);
 
                 Offre offre = new Offre(titre, reference, dateDebutPubli, dateFinPubli, nbrPoste, descrPoste, descrProfil, nbrPoste, contrat, annonceur, diffuseur, metier);
                 offre.setId(id);
