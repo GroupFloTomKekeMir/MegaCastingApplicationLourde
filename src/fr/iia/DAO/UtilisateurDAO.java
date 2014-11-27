@@ -22,7 +22,7 @@ public class UtilisateurDAO {
         Statement stmt = null;
         try{			
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("Select nom, prenom, idAdr From Personne WHERE nom_artiste = '" + nom_artiste + "';");
+            ResultSet rs = stmt.executeQuery("Select nom, prenom, age, mail, telephone, id_adresse, descr_util From utilisateur WHERE nom_artiste = '" + nom_artiste + "';");
             if(rs.next()){
                 int idAdr = rs.getInt("idAdr");
 

@@ -35,6 +35,14 @@ public class Musique {
         this.titre = titre;
     }
 
+    public String getArtiste() {
+        return artiste;
+    }
+
+    public void setArtiste(String artiste) {
+        this.artiste = artiste;
+    }
+    
     public String getDescription() {
         return description;
     }
@@ -59,8 +67,9 @@ public class Musique {
         this.Utilisateur = Utilisateur;
     }
 
-    public Musique(String titre, String description, String genre, Utilisateur Utilisateur) {
+    public Musique(String titre, String artiste, String description, String genre, Utilisateur Utilisateur) {
         this.titre = titre;
+        this.artiste = artiste;
         this.description = description;
         this.genre = genre;
         this.Utilisateur = Utilisateur;
