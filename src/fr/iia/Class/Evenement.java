@@ -15,7 +15,6 @@ import java.util.Objects;
 public class Evenement {
     private int id;
     private String nom;
-    private String lieu;
     private String description;
     private Date date;
     private Adresse Adresse;
@@ -69,7 +68,7 @@ public class Evenement {
         this.Annonceur = Annonceur;
     }
 
-    public Evenement(String nom, String lieu, String description, Date date, Adresse Adresse, Annonceur Annonceur) {
+    public Evenement(String nom, String description, Date date, Adresse Adresse, Annonceur Annonceur) {
         this.nom = nom;
         this.description = description;
         this.date = date;
