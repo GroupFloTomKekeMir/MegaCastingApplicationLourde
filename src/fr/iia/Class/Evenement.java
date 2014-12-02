@@ -19,6 +19,7 @@ public class Evenement {
     private Date date;
     private Adresse Adresse;
     private Annonceur Annonceur;
+    private Media Media;
 
     public int getId() {
         return id;
@@ -75,7 +76,7 @@ public class Evenement {
         this.Adresse = Adresse;
         this.Annonceur = Annonceur;
     }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

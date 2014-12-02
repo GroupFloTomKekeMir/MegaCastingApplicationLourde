@@ -14,7 +14,6 @@ import java.util.Objects;
 public class Musique {
     private int id;
     private String titre;
-    private String artiste;
     private String description;
     private String genre;
     private Utilisateur Utilisateur;
@@ -33,14 +32,6 @@ public class Musique {
 
     public void setTitre(String titre) {
         this.titre = titre;
-    }
-
-    public String getArtiste() {
-        return artiste;
-    }
-
-    public void setArtiste(String artiste) {
-        this.artiste = artiste;
     }
     
     public String getDescription() {
@@ -67,9 +58,8 @@ public class Musique {
         this.Utilisateur = Utilisateur;
     }
 
-    public Musique(String titre, String artiste, String description, String genre, Utilisateur Utilisateur) {
+    public Musique(String titre, String description, String genre, Utilisateur Utilisateur) {
         this.titre = titre;
-        this.artiste = artiste;
         this.description = description;
         this.genre = genre;
         this.Utilisateur = Utilisateur;

@@ -23,7 +23,7 @@ public class DomaineDAO {
         try{
 
             stmt = cnx.createStatement();
-            stmt.executeUpdate("DELETE domaine SET libelle = " + dom.getLibelle()+ "'");
+            stmt.executeUpdate("DELETE domaine WHERE id_domaine = " + dom.getId() + "'");
 
             System.out.println("Suppression réussie.");	
         }catch(Exception ex){
@@ -47,7 +47,7 @@ public class DomaineDAO {
         try{
 
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id, libelle FROM domaine");
+            ResultSet rs = stmt.executeQuery("SELECT id_domaine, libelle FROM domaine");
 
             while(rs.next()){
                 int id = rs.getInt(1);
@@ -77,7 +77,7 @@ public class DomaineDAO {
         try{
 
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT libelle FROM domaine WHERE id = " + id);
+            ResultSet rs = stmt.executeQuery("SELECT libelle FROM domaine WHERE id_domaine = " + id);
 
             if(rs.next()){
                 String libelle = rs.getString("libelle");

@@ -14,9 +14,9 @@ import java.util.Objects;
 public class Annonceur {
     private int id;
     private String nom;
-    private Adresse Adresse;
     private String mail;
-    private String numeroTel;    
+    private String numeroTel;
+    private Adresse Adresse;
     private Media Media;
 
     public int getId() {
@@ -59,12 +59,20 @@ public class Annonceur {
         this.numeroTel = numeroTel;
     }
 
-    public Annonceur(String nom, Adresse Adresse, String mail, String numeroTel) {
+    public Media getMedia() {
+        return Media;
+    }
+
+    public void setMedia(Media Media) {
+        this.Media = Media;
+    }
+
+    public Annonceur(String nom, String mail, String numeroTel, Adresse Adresse, Media Media) {
         this.nom = nom;
-        this.Adresse = Adresse;
         this.mail = mail;
         this.numeroTel = numeroTel;
-        
+        this.Adresse = Adresse;
+        this.Media = Media;
     }
 
     @Override

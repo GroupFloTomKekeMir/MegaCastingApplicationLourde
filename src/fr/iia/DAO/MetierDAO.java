@@ -31,26 +31,25 @@ public class MetierDAO {
                     stmt = stmt = cnx.createStatement();
                     stmt.executeUpdate("INSERT INTO metier (libelle, id_domaine) Values ('" + met.getLibelle() + "', '" + met.getDomaine() + ")" );
 
-                    ResultSet rs = stmt.executeQuery("SELECT MAX(id) FROM metier");
+                    ResultSet rs = stmt.executeQuery("SELECT MAX(id_metier) FROM metier");
                     if (rs.next()){
-                            int id = rs.getInt(1);
-                            met.setId(id);
-
+                        int id = rs.getInt(1);
+                        met.setId(id);
                     System.out.println("Création réussie.");
                     }	 
                 }
 
                 catch(Exception ex){
-                        ex.printStackTrace();
-                        System.out.println("Echec creer metiers");
+                    ex.printStackTrace();
+                    System.out.println("Echec creer metier");
                 }
 
                 finally{
                     if(stmt != null){
                         try {
-                                stmt.close();
+                            stmt.close();
                         } catch (SQLException e) {
-                                e.printStackTrace();
+                            e.printStackTrace();
                         }
                     }
                 }
@@ -136,7 +135,7 @@ public class MetierDAO {
         Statement stmt = null;
         try{			
             stmt = cnx.createStatement();
-            stmt.executeUpdate("DELETE FROM metier WHERE id = " + metier.getId() );
+            stmt.executeUpdate("DELETE FROM metier WHERE id_metier = " + metier.getId() );
 
         }catch(Exception ex){
             ex.printStackTrace();

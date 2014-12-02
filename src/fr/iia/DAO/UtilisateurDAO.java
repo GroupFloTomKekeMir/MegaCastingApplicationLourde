@@ -43,7 +43,7 @@ public class UtilisateurDAO {
         }
         catch(Exception ex){
                 ex.printStackTrace();
-                System.out.println("Echec trouver utilisateur");
+                System.out.println("Echec trouver personne");
         }finally{
             if(stmt != null){
                 try {
@@ -61,22 +61,24 @@ public class UtilisateurDAO {
         Statement stmt = null;
         try{			
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("Select nom, prenom, nom_artiste, age, mail, telephone, id_adresse, descr_util From utilisateur WHERE id_utilisateur = '" + id + "';");
+            ResultSet rs = stmt.executeQuery("Select login, password, nom, prenom, nom_artiste, age, mail, telephone, id_adresse, descr_util "
+                    + "From utilisateur "
+                    + "WHERE id_util = '" + id + "';");
             if(rs.next()){
                 int idAdr = rs.getInt("idAdr");
 
                 Adresse adresse = AdresseDAO.trouver(cnx , idAdr);
                 String login = rs.getString("login");
                 String password = rs.getString("password");
+                String nom_artiste = rs.getString("nom_artiste");
                 String nom = rs.getString("nom");
                 String prenom = rs.getString("prenom");
-                String nomArtiste = rs.getString("nom_artiste");
                 String mail = rs.getString("mail");
                 String telephone = rs.getString("telephone");
                 String descr_util = rs.getString("descr_util");
                 int age = rs.getInt("age");
 
-                utilisateur = new Utilisateur(login, password, nom, prenom, nomArtiste, age, mail, telephone, adresse, descr_util);
+                utilisateur = new Utilisateur(login, password, nom, prenom, nom_artiste, age, mail, telephone, adresse, descr_util);
                 utilisateur.setId(id);
             }	
         }

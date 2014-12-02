@@ -18,8 +18,8 @@ public class AdresseDAO {
         PreparedStatement pstmt = null;
         try{
             pstmt = cnx.prepareStatement("INSERT INTO adresse"
-                                    + " (numero, rue, codePostal, ville, localisation)"
-                                    + " VALUES (?, ?, ?, ?)");
+                + " (numero, rue, code_postal, ville, localisation)"
+                + " VALUES (?, ?, ?, ?)");
 
             pstmt.setInt(1, adr.getNumero() );
             pstmt.setString(2, adr.getRue());
@@ -29,7 +29,7 @@ public class AdresseDAO {
 
             pstmt.executeUpdate();
 
-            ResultSet rs = pstmt.executeQuery("SELECT MAX(id) FROM adresse");
+            ResultSet rs = pstmt.executeQuery("SELECT MAX(id_adr) FROM adresse");
             if(rs.next()){
                 int id = rs.getInt(1);
                 adr.setId(id);
@@ -57,8 +57,9 @@ public class AdresseDAO {
         try{
 
             stmt = cnx.createStatement();
-            stmt.executeUpdate("UPDATE adresse SET numero = " + adr.getNumero() + ", codePostal = " + adr.getCodePostal() + ", rue = '" + adr.getRue() + "', ville = '" + adr.getVille() + "', localisation = '" + adr.getLocalisation() + "'");
-
+            stmt.executeUpdate("UPDATE adresse "
+                    + "SET numero = " + adr.getNumero() + ", code_postal = " + adr.getCodePostal() + ", rue = '" + adr.getRue() + "', ville = '" + adr.getVille() + "', localisation = '" + adr.getLocalisation() + "' "
+                    + "WHERE id_adr = " + adr.getId());
             System.out.println("Modification réussie.");
 
 
@@ -81,7 +82,7 @@ public class AdresseDAO {
         try{
 
             stmt = cnx.createStatement();
-            stmt.executeUpdate("DELETE adresse SET numero = " + adr.getNumero() + ", codePostal = " + adr.getCodePostal() + ", rue = '" + adr.getRue() + "', ville = '" + adr.getVille() + "', localisation = '" + adr.getLocalisation() + "'");
+            stmt.executeUpdate("DELETE From adresse where id_adr = " + adr.getId());
 
             System.out.println("Suppression réussie.");	
         }catch(Exception ex){
@@ -105,7 +106,7 @@ public class AdresseDAO {
         try{
 
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id, numero, rue, codePostal, ville, localisation FROM adresse");
+            ResultSet rs = stmt.executeQuery("SELECT id_adr, numero, rue, code_postal, ville, localisation FROM adresse");
 
             while(rs.next()){
                 int id = rs.getInt(1);
@@ -140,12 +141,12 @@ public class AdresseDAO {
         try{
 
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT numero, rue, codePostal, ville, localisation FROM adresse WHERE id = " + id);
+            ResultSet rs = stmt.executeQuery("SELECT numero, rue, code_postal, ville, localisation FROM adresse WHERE id_adr = " + id);
 
             if(rs.next()){
                 int numero = rs.getInt("numero");
                 String rue = rs.getString("rue");
-                int codePostal = rs.getInt("codePostal");
+                int codePostal = rs.getInt("code_postal");
                 String ville = rs.getString("ville");
                 String localisation = rs.getString("localisation");
 

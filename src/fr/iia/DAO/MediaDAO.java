@@ -28,26 +28,26 @@ public class MediaDAO {
             stmt = stmt = cnx.createStatement();
             stmt.executeUpdate("INSERT INTO media (nom, taille, id_type) Values ('" + med.getNom() + "', '" + med.getTaille()+ "', " + med.getTypeMedia() + ")" );
 
-            ResultSet rs = stmt.executeQuery("SELECT MAX(id) FROM media");
+            ResultSet rs = stmt.executeQuery("SELECT MAX(id_media) FROM media");
             if (rs.next()){
-                    int id = rs.getInt(1);
-                    med.setId(id);
+                int id = rs.getInt(1);
+                med.setId(id);
 
             System.out.println("Création réussie.");
             }	 
         }
         
         catch(Exception ex){
-                ex.printStackTrace();
-                System.out.println("Echec creer metier");
+            ex.printStackTrace();
+            System.out.println("Echec creer media");
         }
         
         finally{
             if(stmt != null){
                 try {
-                        stmt.close();
+                    stmt.close();
                 } catch (SQLException e) {
-                        e.printStackTrace();
+                    e.printStackTrace();
                 }
             }
         }
@@ -75,7 +75,7 @@ public class MediaDAO {
 
         }catch(Exception ex){
             ex.printStackTrace();
-            System.out.println("Echec trouver metier");
+            System.out.println("Echec trouver media");
         }finally{
             if(stmt != null){
                 try {
@@ -89,12 +89,46 @@ public class MediaDAO {
         return media;
     }
     
+    public static void modifier(Connection cnx, Media media) throws Exception {
+        Media m = trouver(cnx, media.getId());
+
+        if(m != null){
+            try{
+                throw new Exception(media.getId() + " existe déja !");
+            }
+            catch(Exception ex){	
+
+            }
+        }		
+
+        Statement stmt = null;
+        try{			
+            stmt = cnx.createStatement();
+            stmt.executeUpdate("UPDATE media "
+                + "SET nom = '" + media.getNom() + "', taille = '" + media.getTaille() + "', id_media = '" + media.getTypeMedia() + " "
+                + "WHERE id_media = " + media.getId());
+
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+            System.out.println("Echec modifier media");
+        }finally{
+            if(stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }	
+    
     public static void supprimer(Connection cnx, Media media){
 
         Statement stmt = null;
         try{			
             stmt = cnx.createStatement();
-            stmt.executeUpdate("DELETE FROM media WHERE id = " + media.getId() );
+            stmt.executeUpdate("DELETE FROM media WHERE id_media = " + media.getId() );
 
         }catch(Exception ex){
             ex.printStackTrace();

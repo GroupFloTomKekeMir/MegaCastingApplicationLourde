@@ -14,9 +14,9 @@ import java.util.Objects;
 public class Diffuseur {
     private int id;
     private String nom;
-    private Adresse Adresse;
     private String mail;
     private String numeroTel;    
+    private Adresse Adresse;
     private Media Media;
 
 
@@ -36,14 +36,6 @@ public class Diffuseur {
         this.nom = nom;
     }
 
-    public Adresse getAdresse() {
-        return Adresse;
-    }
-
-    public void setAdresse(Adresse Adresse) {
-        this.Adresse = Adresse;
-    }
-
     public String getMail() {
         return mail;
     }
@@ -59,12 +51,30 @@ public class Diffuseur {
     public void setNumeroTel(String numeroTel) {
         this.numeroTel = numeroTel;
     }
+    
+    public Adresse getAdresse() {
+        return Adresse;
+    }
 
-    public Diffuseur(String nom, Adresse Adresse, String mail, String numeroTel) {
-        this.nom = nom;
+    public void setAdresse(Adresse Adresse) {
         this.Adresse = Adresse;
+    }
+
+    public Media getMedia() {
+        return Media;
+    }
+
+    public void setMedia(Media Media) {
+        this.Media = Media;
+    }
+
+    public Diffuseur(int id, String nom, String mail, String numeroTel, Adresse Adresse, Media Media) {
+        this.id = id;
+        this.nom = nom;
         this.mail = mail;
-        this.numeroTel = numeroTel;        
+        this.numeroTel = numeroTel;
+        this.Adresse = Adresse;
+        this.Media = Media;
     }
 
     @Override
