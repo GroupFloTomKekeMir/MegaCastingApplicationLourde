@@ -53,8 +53,8 @@ public class DomaineDAO {
                 int id = rs.getInt(1);
                 String domaine = rs.getString(2);
 
-                Domaine adrResult = new Domaine(domaine);
-                adrResult.setId(id);
+                Domaine domResult = new Domaine(domaine);
+                domResult.setId(id);
             }	
         }catch(Exception ex){
             ex.printStackTrace();

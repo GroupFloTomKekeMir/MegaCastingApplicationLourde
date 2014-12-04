@@ -35,7 +35,7 @@ public class EvenementDAO {
 
             stmt = cnx.createStatement();
             stmt.executeUpdate("INSERT INTO diffuseur (nom, mail, telephone, id_adresse, id_annonceur) "
-                    + "Values ('" + evenement.getNom() + "', '" + evenement.getDescription() + "', '" + evenement.getDate() + "', '" + evenement.getAdresse() + "', '" + evenement.getAnnonceur() + "')" );                 
+                + "Values ('" + evenement.getNom() + "', '" + evenement.getDescription() + "', '" + evenement.getDate() + "', '" + evenement.getAdresse() + "', '" + evenement.getAnnonceur() + "')" );                 
 
             ResultSet rs = stmt.executeQuery("SELECT MAX(id_evenement) FROM evenement");
             if (rs.next()){

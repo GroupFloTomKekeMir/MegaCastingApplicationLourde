@@ -5,6 +5,12 @@
  */
 package fr.iia.MegaCasting;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author Enzo
@@ -17,6 +23,17 @@ public class MegaCastingMain extends javax.swing.JFrame {
     public MegaCastingMain() {
         initComponents();
     }
+    
+    public void paintComponent(Graphics g){
+    try {
+      Image img = ImageIO.read(new File("Fond.jpg"));
+      //g.drawImage(img, 50, 50, this);
+      //Pour une image de fond
+      g.drawImage(img, 50, 50, this.getWidth(), this.getHeight(), this);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }                
+  }        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,17 +44,31 @@ public class MegaCastingMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(750, 500));
+        setResizable(false);
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 379, Short.MAX_VALUE)
         );
 
         pack();
@@ -79,5 +110,8 @@ public class MegaCastingMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }
