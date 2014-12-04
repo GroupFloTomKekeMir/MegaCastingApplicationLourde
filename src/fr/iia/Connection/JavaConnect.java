@@ -29,7 +29,7 @@ public class JavaConnect {
     
     public static Connection ConnectDB() {   
         Connection cnx = null;
-        String url = "jdbc:mysql://localhost/javaweb";
+        String url = "jdbc:mysql://localhost/megacasting";
 
         try {
 

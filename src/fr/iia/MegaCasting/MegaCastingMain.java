@@ -5,23 +5,11 @@
  */
 package fr.iia.MegaCasting;
 
-import fr.iia.Class.Offre;
-import fr.iia.Connection.JavaConnect;
-import static fr.iia.Connection.JavaConnect.ConnectDB;
-import static fr.iia.Connection.JavaConnect.ImportDriver;
-import fr.iia.DAO.OffreDAO;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.Collection;
 import javax.imageio.ImageIO;
-import javax.swing.table.DefaultTableModel;
-
-
 
 /**
  *
@@ -29,41 +17,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MegaCastingMain extends javax.swing.JFrame {
 
-    Connection cnx = null;
-    ResultSet rs = null;
-    PreparedStatement pst = null;
     /**
      * Creates new form MegaCastingMain
      */
     public MegaCastingMain() {
         initComponents();
-        ImportDriver();
-        cnx = JavaConnect.ConnectDB();
-    }
-    
-    private void offreListe(){
-        DefaultTableModel model = (DefaultTableModel) offreTab.getModel();
-        model.setNumRows(0);
-        OffreDAO offreDAO = new OffreDAO();
-        Collection<Offre> offre = offreDAO.lister(cnx);
-        
-        for(Offre o : offre){
-            model.addRow(new Object[]{
-                o.getTitre(),
-                o.getReference(),
-                o.getDate_debut_publi(),
-                o.getFin_publi(),
-                o.getNbr_poste(),
-                o.getDescription_poste(),
-                o.getDescription_profil(),
-                o.getTelephone(),
-                o.getDuree(),
-                o.getContrat(),
-                o.getAnnonceur(),
-                o.getDiffuseur(),
-                o.getMetier()              
-            });
-        }     
     }
     
     public void paintComponent(Graphics g){
@@ -74,10 +32,7 @@ public class MegaCastingMain extends javax.swing.JFrame {
       g.drawImage(img, 50, 50, this.getWidth(), this.getHeight(), this);
     } catch (IOException e) {
       e.printStackTrace();
-    }  
-    
-    
-    
+    }                
   }        
 
     /**
@@ -89,292 +44,35 @@ public class MegaCastingMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        page = new javax.swing.JTabbedPane();
-        AccueilPanel = new javax.swing.JPanel();
-        offrePanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        offreTab = new javax.swing.JTable();
-        annonceurPanel = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        annonceurTab = new javax.swing.JTable();
-        diffuseurPanel = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        diffuseurTab = new javax.swing.JTable();
-        evenementPanel = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        evenementTab = new javax.swing.JTable();
-        musiquePanel = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        musiqueTab = new javax.swing.JTable();
-        barreMenu = new javax.swing.JMenuBar();
-        fichierMenu = new javax.swing.JMenu();
-        ajouterMenuFichier = new javax.swing.JMenu();
-        offreMenuAjouter = new javax.swing.JMenuItem();
-        annonceurMenuAjouter = new javax.swing.JMenuItem();
-        diffuseurMenuAjouter = new javax.swing.JMenuItem();
-        evenementMenuAjouter = new javax.swing.JMenuItem();
-        musiqueMenuAjouter = new javax.swing.JMenuItem();
-        modifierMenuFichier = new javax.swing.JMenu();
-        offreMenuModifier = new javax.swing.JMenuItem();
-        annonceurMenuModifier = new javax.swing.JMenuItem();
-        diffuseurMenuModifier = new javax.swing.JMenuItem();
-        evenementMenuModifier = new javax.swing.JMenuItem();
-        musiqueMenuModifier = new javax.swing.JMenuItem();
-        imprimerMenuFichier = new javax.swing.JMenuItem();
-        quitterMenuFichier = new javax.swing.JMenuItem();
-        editionMenu = new javax.swing.JMenu();
-        aideMenu = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Méga Casting");
         setPreferredSize(new java.awt.Dimension(750, 500));
         setResizable(false);
 
-        javax.swing.GroupLayout AccueilPanelLayout = new javax.swing.GroupLayout(AccueilPanel);
-        AccueilPanel.setLayout(AccueilPanelLayout);
-        AccueilPanelLayout.setHorizontalGroup(
-            AccueilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
-        );
-        AccueilPanelLayout.setVerticalGroup(
-            AccueilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 429, Short.MAX_VALUE)
-        );
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
 
-        page.addTab("Accueil", AccueilPanel);
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
 
-        offreTab.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Titre", "Référence", "Début publication", "Fin publication", "Nombre de poste", "Description du poste", "Description du profil", "Nombre de visite", "Durée du contrat", "Contrat", "Annonceur", "Diffuseur", "Metier"
-            }
-        ));
-        jScrollPane1.setViewportView(offreTab);
-
-        javax.swing.GroupLayout offrePanelLayout = new javax.swing.GroupLayout(offrePanel);
-        offrePanel.setLayout(offrePanelLayout);
-        offrePanelLayout.setHorizontalGroup(
-            offrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
-        );
-        offrePanelLayout.setVerticalGroup(
-            offrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(offrePanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        page.addTab("Offres", offrePanel);
-
-        annonceurTab.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(annonceurTab);
-
-        javax.swing.GroupLayout annonceurPanelLayout = new javax.swing.GroupLayout(annonceurPanel);
-        annonceurPanel.setLayout(annonceurPanelLayout);
-        annonceurPanelLayout.setHorizontalGroup(
-            annonceurPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
-        );
-        annonceurPanelLayout.setVerticalGroup(
-            annonceurPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(annonceurPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        page.addTab("Annonceurs", annonceurPanel);
-
-        diffuseurTab.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(diffuseurTab);
-
-        javax.swing.GroupLayout diffuseurPanelLayout = new javax.swing.GroupLayout(diffuseurPanel);
-        diffuseurPanel.setLayout(diffuseurPanelLayout);
-        diffuseurPanelLayout.setHorizontalGroup(
-            diffuseurPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
-        );
-        diffuseurPanelLayout.setVerticalGroup(
-            diffuseurPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(diffuseurPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        page.addTab("Diffuseurs", diffuseurPanel);
-
-        evenementTab.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane4.setViewportView(evenementTab);
-
-        javax.swing.GroupLayout evenementPanelLayout = new javax.swing.GroupLayout(evenementPanel);
-        evenementPanel.setLayout(evenementPanelLayout);
-        evenementPanelLayout.setHorizontalGroup(
-            evenementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
-        );
-        evenementPanelLayout.setVerticalGroup(
-            evenementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(evenementPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        page.addTab("Evenements", evenementPanel);
-
-        musiqueTab.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane5.setViewportView(musiqueTab);
-
-        javax.swing.GroupLayout musiquePanelLayout = new javax.swing.GroupLayout(musiquePanel);
-        musiquePanel.setLayout(musiquePanelLayout);
-        musiquePanelLayout.setHorizontalGroup(
-            musiquePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
-        );
-        musiquePanelLayout.setVerticalGroup(
-            musiquePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(musiquePanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        page.addTab("Musiques", musiquePanel);
-
-        fichierMenu.setText("Fichier");
-
-        ajouterMenuFichier.setText("Ajouter");
-
-        offreMenuAjouter.setText("Offres");
-        ajouterMenuFichier.add(offreMenuAjouter);
-
-        annonceurMenuAjouter.setText("Annonceurs");
-        ajouterMenuFichier.add(annonceurMenuAjouter);
-
-        diffuseurMenuAjouter.setText("Diffuseurs");
-        ajouterMenuFichier.add(diffuseurMenuAjouter);
-
-        evenementMenuAjouter.setText("Evènements");
-        evenementMenuAjouter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                evenementMenuAjouterActionPerformed(evt);
-            }
-        });
-        ajouterMenuFichier.add(evenementMenuAjouter);
-
-        musiqueMenuAjouter.setText("Musiques");
-        ajouterMenuFichier.add(musiqueMenuAjouter);
-
-        fichierMenu.add(ajouterMenuFichier);
-
-        modifierMenuFichier.setText("Modifier");
-
-        offreMenuModifier.setText("Offres");
-        modifierMenuFichier.add(offreMenuModifier);
-
-        annonceurMenuModifier.setText("Annonceurs");
-        modifierMenuFichier.add(annonceurMenuModifier);
-
-        diffuseurMenuModifier.setText("Diffuseurs");
-        modifierMenuFichier.add(diffuseurMenuModifier);
-
-        evenementMenuModifier.setText("Evènements");
-        modifierMenuFichier.add(evenementMenuModifier);
-
-        musiqueMenuModifier.setText("Musiques");
-        modifierMenuFichier.add(musiqueMenuModifier);
-
-        fichierMenu.add(modifierMenuFichier);
-
-        imprimerMenuFichier.setText("Imprimer");
-        fichierMenu.add(imprimerMenuFichier);
-
-        quitterMenuFichier.setText("Quitter");
-        fichierMenu.add(quitterMenuFichier);
-
-        barreMenu.add(fichierMenu);
-
-        editionMenu.setText("Edition");
-        barreMenu.add(editionMenu);
-
-        aideMenu.setText("Aide");
-        aideMenu.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        aideMenu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-
-        jMenuItem1.setText("Docs  en ligne et support");
-        aideMenu.add(jMenuItem1);
-
-        jMenuItem2.setText("A propos");
-        aideMenu.add(jMenuItem2);
-
-        barreMenu.add(aideMenu);
-
-        setJMenuBar(barreMenu);
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(page)
-                .addContainerGap())
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(page)
-                .addContainerGap())
+            .addGap(0, 379, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void evenementMenuAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evenementMenuAjouterActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_evenementMenuAjouterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -412,42 +110,8 @@ public class MegaCastingMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel AccueilPanel;
-    private javax.swing.JMenu aideMenu;
-    private javax.swing.JMenu ajouterMenuFichier;
-    private javax.swing.JMenuItem annonceurMenuAjouter;
-    private javax.swing.JMenuItem annonceurMenuModifier;
-    private javax.swing.JPanel annonceurPanel;
-    private javax.swing.JTable annonceurTab;
-    private javax.swing.JMenuBar barreMenu;
-    private javax.swing.JMenuItem diffuseurMenuAjouter;
-    private javax.swing.JMenuItem diffuseurMenuModifier;
-    private javax.swing.JPanel diffuseurPanel;
-    private javax.swing.JTable diffuseurTab;
-    private javax.swing.JMenu editionMenu;
-    private javax.swing.JMenuItem evenementMenuAjouter;
-    private javax.swing.JMenuItem evenementMenuModifier;
-    private javax.swing.JPanel evenementPanel;
-    private javax.swing.JTable evenementTab;
-    private javax.swing.JMenu fichierMenu;
-    private javax.swing.JMenuItem imprimerMenuFichier;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JMenu modifierMenuFichier;
-    private javax.swing.JMenuItem musiqueMenuAjouter;
-    private javax.swing.JMenuItem musiqueMenuModifier;
-    private javax.swing.JPanel musiquePanel;
-    private javax.swing.JTable musiqueTab;
-    private javax.swing.JMenuItem offreMenuAjouter;
-    private javax.swing.JMenuItem offreMenuModifier;
-    private javax.swing.JPanel offrePanel;
-    private javax.swing.JTable offreTab;
-    private javax.swing.JTabbedPane page;
-    private javax.swing.JMenuItem quitterMenuFichier;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }
