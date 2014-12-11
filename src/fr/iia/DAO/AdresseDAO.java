@@ -19,7 +19,7 @@ public class AdresseDAO {
         try{
             pstmt = cnx.prepareStatement("INSERT INTO adresse"
                 + " (numero, rue, code_postal, ville, localisation)"
-                + " VALUES (?, ?, ?, ?)");
+                + " VALUES (?, ?, ?, ?, ?)");
 
             pstmt.setInt(1, adr.getNumero() );
             pstmt.setString(2, adr.getRue());

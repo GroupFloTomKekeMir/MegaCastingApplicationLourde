@@ -193,12 +193,12 @@ public class DiffuseursDAO {
         Statement stmt = null;
         try{			
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id_diffuseur, nom, mail, numeroTel, id_adresse, id_media FROM diffuseur");
+            ResultSet rs = stmt.executeQuery("SELECT id_diffuseur, nom, mail, telephone, id_adresse, id_media FROM diffuseur");
             while(rs.next()){
                 int id = rs.getInt("id_diffuseur");
                 String nom = rs.getString("nom");
                 String mail = rs.getString("mail");
-                String numeroTel = rs.getString("numeroTel");
+                String numeroTel = rs.getString("telephone");
                 int idAdr = rs.getInt("id_adresse");
                 int idMed = rs.getInt("id_media");
 

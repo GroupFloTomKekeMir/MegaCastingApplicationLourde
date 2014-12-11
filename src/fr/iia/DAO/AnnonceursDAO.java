@@ -33,8 +33,9 @@ public class AnnonceursDAO {
         try{
 
             stmt = cnx.createStatement();
-            stmt.executeUpdate("INSERT INTO annonceur (nom, mail, telephone, id_adresse, id_media) "
-                + "Values ('" + annonceur.getNom() + "', '" + annonceur.getMail() + ", " + annonceur.getNumeroTel() + ", " + annonceur.getAdresse().getId() + annonceur.getMedia().getId() + ")" );                 
+            String sql = "INSERT INTO annonceur (nom, mail, telephone, id_adresse) "
+                + "Values ('" + annonceur.getNom() + "', '" + annonceur.getMail() + "', '" + annonceur.getNumeroTel() + "', " + annonceur.getAdresse().getId()  + ")" ;
+            stmt.executeUpdate(sql);                 
 
             ResultSet rs = stmt.executeQuery("SELECT MAX(id_annonceur) FROM annonceur");
             if (rs.next()){
@@ -199,7 +200,7 @@ public class AnnonceursDAO {
         Statement stmt = null;
         try{			
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id_annonceur, nom, mail, numeroTel, id_adresse, id_media FROM annonceur");
+            ResultSet rs = stmt.executeQuery("SELECT id_annonceur, nom, mail, telephone, id_adresse, id_media FROM annonceur");
             while(rs.next()){
                 int idAdr = rs.getInt("id_adresse");
                 int idMed = rs.getInt("id_media");
@@ -207,7 +208,7 @@ public class AnnonceursDAO {
                 int id = rs.getInt("id_annonceur");
                 String nom = rs.getString("nom");
                 String mail = rs.getString("mail");
-                String numeroTel = rs.getString("numeroTel");
+                String numeroTel = rs.getString("telephone");
 
                 Adresse adresse =AdresseDAO.trouver(cnx, idAdr);
                 Media media = MediaDAO.trouver(cnx, idMed);
