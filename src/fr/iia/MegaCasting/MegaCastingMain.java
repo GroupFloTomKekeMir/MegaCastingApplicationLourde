@@ -420,6 +420,11 @@ public class MegaCastingMain extends javax.swing.JFrame {
         ajouterMenuFichier.add(annonceurMenuAjouter);
 
         diffuseurMenuAjouter.setText("Diffuseurs");
+        diffuseurMenuAjouter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diffuseurMenuAjouterActionPerformed(evt);
+            }
+        });
         ajouterMenuFichier.add(diffuseurMenuAjouter);
 
         evenementMenuAjouter.setText("Evènements");
@@ -584,7 +589,7 @@ public class MegaCastingMain extends javax.swing.JFrame {
             model.addRow(new Object[]{
                 e.getNom(),
                 e.getDescription(),
-                e.getDate().toString(),
+                e.getDate(),
                 e.getAdresse().getNumero(),
                 e.getAdresse().getRue(),
                 e.getAdresse().getCodePostal(),
@@ -613,7 +618,11 @@ public class MegaCastingMain extends javax.swing.JFrame {
     }
     
     private void evenementMenuAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evenementMenuAjouterActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
+        ajouterEvenement ajouterEvenementFrame = new ajouterEvenement();
+        ajouterEvenementFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        ajouterEvenementFrame.setSize(600, 600);
+        ajouterEvenementFrame.setVisible(true);
     }//GEN-LAST:event_evenementMenuAjouterActionPerformed
 
     private void offreMenuAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offreMenuAjouterActionPerformed
@@ -657,53 +666,20 @@ public class MegaCastingMain extends javax.swing.JFrame {
 
     private void updateAnnonceursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateAnnonceursActionPerformed
         // TODO add your handling code here:
-        String nom = .getText();
-        String prenom = textFieldFirstName.getText();
-        int age = (int) spinnerAge.getValue();
         
-        int num = (int) spinnerNumber.getValue();
-        String rue = textFieldNameStreet.getText();
-        int codePostal = Integer.parseInt(textFieldZip.getText());
-        String ville = textFieldCity.getText();
-        
-        PersonneDao personneDao = new PersonneDao();
-        Personne personne = PersonneDao.trouver(cnx, nom, prenom);
-        
-        if (personne == null) {
-            Adresse adresse = new Adresse(codePostal, rue, ville);
-            personne = new Personne(nom, prenom, age, adresse);
-            
-            try {
-                PersonneDao.creer(cnx, personne);
-                
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        } else {
-            
-            personne.setNom(nom);
-            personne.setPrenom(prenom);
-            personne.setAge(age);
-            
-            Adresse adresse = personne.getAdresse();
-            adresse.setNumero(num);
-            adresse.setRue(rue);
-            adresse.setCodePostal(codePostal);
-            adresse.setVille(ville);
-            
-            try {
-                personneDao.modifier(cnx, personne);
-            } catch (Exception ex) {
-                
-            }
-        }
-        
-        refreshListAnnonceur();
     }//GEN-LAST:event_updateAnnonceursActionPerformed
 
     private void updateDiffuseurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDiffuseurActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_updateDiffuseurActionPerformed
+
+    private void diffuseurMenuAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diffuseurMenuAjouterActionPerformed
+            // TODO add your handling code here:
+        ajouterDiffuseur ajouterDiffuseurFrame = new ajouterDiffuseur();
+        ajouterDiffuseurFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        ajouterDiffuseurFrame.setSize(600, 600);
+        ajouterDiffuseurFrame.setVisible(true);
+    }//GEN-LAST:event_diffuseurMenuAjouterActionPerformed
 
     
     /**

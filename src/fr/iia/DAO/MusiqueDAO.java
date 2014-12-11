@@ -29,7 +29,8 @@ public class MusiqueDAO {
 
         try{
             stmt = stmt = cnx.createStatement();
-            stmt.executeUpdate("INSERT INTO musique (titre, artiste, description, genre, id_utilisateur) Values ('" + mus.getTitre() + "', '" + "', '" +  mus.getDescription() + "', '" + mus.getGenre() + "', '" + mus.getUtilisateur().getId() + ")" );
+            stmt.executeUpdate("INSERT INTO musique (titre, artiste, description, genre, id_utilisateur) "
+                    + "Values ('" + mus.getTitre() + "', '" + "', '" +  mus.getDescription() + "', '" + mus.getGenre() + "', '" + mus.getUtilisateur().getId() + ")" );
 
             ResultSet rs = stmt.executeQuery("SELECT MAX(id_musique) FROM musique");
             if (rs.next()){

@@ -33,8 +33,9 @@ public class DiffuseursDAO {
         try{
 
             stmt = cnx.createStatement();
-            stmt.executeUpdate("INSERT INTO diffuseur (nom, mail, telephone, id_adresse, id_media) "
-                    + "Values ('" + diffuseur.getNom() + "', '" + diffuseur.getMail() + "', '" + diffuseur.getNumeroTel() + "', '" + diffuseur.getAdresse() + "', '" + diffuseur.getMedia() + "')" );                 
+            String sql = "INSERT INTO diffuseur (nom, mail, telephone, id_adresse) "
+                + "Values ('" + diffuseur.getNom() + "', '" + diffuseur.getMail() + "', '" + diffuseur.getNumeroTel() + "', '" + diffuseur.getAdresse().getId() + "')";
+            stmt.executeUpdate(sql);                 
 
             ResultSet rs = stmt.executeQuery("SELECT MAX(id_diffuseur) FROM diffuseur");
             if (rs.next()){
@@ -67,11 +68,11 @@ public class DiffuseursDAO {
                 int idMedia = rs.getInt("id_media");
 
                 Adresse adr = AdresseDAO.trouver(cnx, idAdr);
-                Media med = MediaDAO.trouver(cnx, idAdr);
+                Media med = MediaDAO.trouver(cnx, idMedia);
                 int id = rs.getInt("id_diffuseur");
                 String mail = rs.getString("mail");
                 String numeroTel = rs.getString("telephone");
-                diffuseur = new Diffuseur(id, nom, mail, numeroTel, adr, med);
+                diffuseur = new Diffuseur(nom, mail, numeroTel, adr, med);
 
                 diffuseur.setId(id);				
             }
@@ -106,7 +107,7 @@ public class DiffuseursDAO {
                 String nom = rs.getString("nom");
                 String mail = rs.getString("mail");
                 String numeroTel = rs.getString("telephone");
-                diffuseur = new Diffuseur(id, nom, mail, numeroTel, adr, med);
+                diffuseur = new Diffuseur(nom, mail, numeroTel, adr, med);
 
                 diffuseur.setId(id);				
             }
@@ -205,7 +206,7 @@ public class DiffuseursDAO {
                 Adresse adresse = AdresseDAO.trouver(cnx, idAdr);
                 Media media = MediaDAO.trouver(cnx, idMed);
 
-                Diffuseur diffuseur= new Diffuseur(id, nom, mail, numeroTel, adresse, media);
+                Diffuseur diffuseur= new Diffuseur(nom, mail, numeroTel, adresse, media);
                 diffuseur.setMail(mail);
                 diffuseur.setId(id);
 

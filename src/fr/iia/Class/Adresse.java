@@ -7,7 +7,7 @@ public class Adresse {
 
     private int id;
     private int numero;
-    private int codePostal;
+    private String codePostal;
     private String rue;
     private String ville;
     private String localisation;
@@ -28,11 +28,11 @@ public class Adresse {
         this.numero = numero;
     }
 
-    public int getCodePostal() {
+    public String getCodePostal() {
         return codePostal;
     }
 
-    public void setCodePostal(int codePostal) {
+    public void setCodePostal(String codePostal) {
         this.codePostal = codePostal;
     }
 
@@ -60,7 +60,7 @@ public class Adresse {
         this.localisation = localisation;
     }
 
-    public Adresse(int numero, int codePostal, String rue, String ville, String localisation) {
+    public Adresse(int numero, String codePostal, String rue, String ville, String localisation) {
         this.numero = numero;
         this.codePostal = codePostal;
         this.rue = rue;

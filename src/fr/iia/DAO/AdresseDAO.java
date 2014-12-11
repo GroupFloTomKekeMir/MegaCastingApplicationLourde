@@ -23,7 +23,7 @@ public class AdresseDAO {
 
             pstmt.setInt(1, adr.getNumero() );
             pstmt.setString(2, adr.getRue());
-            pstmt.setInt(3, adr.getCodePostal());
+            pstmt.setString(3, adr.getCodePostal());
             pstmt.setString(4, adr.getVille() );
             pstmt.setString(5, adr.getLocalisation());
 
@@ -112,7 +112,7 @@ public class AdresseDAO {
                 int id = rs.getInt(1);
                 int numero = rs.getInt(2);
                 String rue = rs.getString(3);
-                int codePostal = rs.getInt(4);
+                String codePostal = rs.getString(4);
                 String ville = rs.getString(5);
                 String localisation = rs.getString(6);
 
@@ -146,7 +146,7 @@ public class AdresseDAO {
             if(rs.next()){
                 int numero = rs.getInt("numero");
                 String rue = rs.getString("rue");
-                int codePostal = rs.getInt("code_postal");
+                String codePostal = rs.getString("code_postal");
                 String ville = rs.getString("ville");
                 String localisation = rs.getString("localisation");
 

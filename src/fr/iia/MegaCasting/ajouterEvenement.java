@@ -5,17 +5,35 @@
  */
 package fr.iia.MegaCasting;
 
+import fr.iia.Class.Adresse;
+import fr.iia.Class.Annonceur;
+import fr.iia.Class.Evenement;
+import fr.iia.Connection.JavaConnect;
+import fr.iia.DAO.AnnonceursDAO;
+import fr.iia.DAO.EvenementDAO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Date;
+
 /**
  *
  * @author Flo
  */
 public class ajouterEvenement extends javax.swing.JFrame {
 
+    Connection cnx = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
     /**
      * Creates new form ajouterEvenement
      */
     public ajouterEvenement() {
         initComponents();
+        JavaConnect.ImportDriver();
+        cnx = JavaConnect.ConnectDB();
+        Fillcombo();
+        
     }
 
     /**
@@ -27,21 +45,203 @@ public class ajouterEvenement extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        nomBox = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        numeroSpinner = new javax.swing.JSpinner();
+        jLabel6 = new javax.swing.JLabel();
+        nomRueBox = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        cpBox = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        villeBox = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        localisationBox = new javax.swing.JTextField();
+        boutonEnregistrer = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descriptionBox = new javax.swing.JTextArea();
+        dateBox = new com.toedter.calendar.JCalendar();
+        annonceurBox = new javax.swing.JComboBox();
+        jLabel10 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Ajouter Evenement");
+        jLabel1.setToolTipText("");
+
+        jLabel2.setText("Nom");
+
+        jLabel3.setText("Description");
+
+        jLabel5.setText("N° rue");
+
+        jLabel6.setText("Nom rue");
+
+        jLabel7.setText("Code Postal");
+
+        jLabel8.setText("Ville");
+
+        jLabel9.setText("Region");
+
+        boutonEnregistrer.setText("Enregistrer");
+        boutonEnregistrer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonEnregistrerActionPerformed(evt);
+            }
+        });
+
+        descriptionBox.setColumns(20);
+        descriptionBox.setRows(5);
+        jScrollPane1.setViewportView(descriptionBox);
+
+        annonceurBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        annonceurBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                annonceurBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Annonceur");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(nomBox, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(jLabel1))
+                    .addComponent(dateBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(localisationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nomRueBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(numeroSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(cpBox, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(villeBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(annonceurBox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(boutonEnregistrer))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numeroSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomRueBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cpBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel7))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(villeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(localisationBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(annonceurBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(boutonEnregistrer)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 6, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(dateBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Fillcombo() {
+        try {
+            String sql = "Select nom from evenement";
+            pst = cnx.prepareStatement(sql);
+            rs = pst.executeQuery();
+            
+            while (rs.next()) {                
+                String nom = rs.getString("nom");
+                annonceurBox.addItem(nom);
+            }
+            
+        } 
+        catch (Exception e) {
+        
+        }
+    }
+    
+    private void boutonEnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonEnregistrerActionPerformed
+
+        // TODO add your handling code here:
+
+        String nom = nomBox.getText();
+        String description = descriptionBox.getText();
+        String dateEvenement = dateBox.getDate().toString();
+
+        int numRue = (int) numeroSpinner.getValue();
+        String rue = nomRueBox.getText();
+        String codePostal = cpBox.getText();
+        String ville = villeBox.getText();
+        String localisation = localisationBox.getText();
+        
+        String nomAnnonceur = annonceurBox.getName();
+
+        EvenementDAO evenementDAO = new EvenementDAO();
+        Evenement evenement = EvenementDAO.trouver(cnx, nom);
+        AnnonceursDAO annonceurDAO = new AnnonceursDAO();
+        
+        
+        if (evenement == null) {
+            Adresse adresse = new Adresse(numRue, codePostal, rue, ville, localisation);
+            Annonceur annonceur = AnnonceursDAO.trouver(cnx, nomAnnonceur);
+            evenement = new Evenement(nom, description, dateEvenement, adresse, null);
+
+            try {
+                EvenementDAO.creer(cnx, evenement);
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_boutonEnregistrerActionPerformed
+
+    private void annonceurBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annonceurBoxActionPerformed
+
+    }//GEN-LAST:event_annonceurBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +279,25 @@ public class ajouterEvenement extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox annonceurBox;
+    private javax.swing.JButton boutonEnregistrer;
+    private javax.swing.JTextField cpBox;
+    private com.toedter.calendar.JCalendar dateBox;
+    private javax.swing.JTextArea descriptionBox;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField localisationBox;
+    private javax.swing.JTextField nomBox;
+    private javax.swing.JTextField nomRueBox;
+    private javax.swing.JSpinner numeroSpinner;
+    private javax.swing.JTextField villeBox;
     // End of variables declaration//GEN-END:variables
 }

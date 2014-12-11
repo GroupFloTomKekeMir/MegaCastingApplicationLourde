@@ -28,14 +28,14 @@ public class EvenementDAO {
         }
 
         AdresseDAO.creer(cnx, evenement.getAdresse());
-        AnnonceursDAO.creer(cnx, evenement.getAnnonceur());
 
         Statement stmt = null;
         try{
 
             stmt = cnx.createStatement();
-            stmt.executeUpdate("INSERT INTO diffuseur (nom, mail, telephone, id_adresse, id_annonceur) "
-                + "Values ('" + evenement.getNom() + "', '" + evenement.getDescription() + "', '" + evenement.getDate() + "', '" + evenement.getAdresse() + "', '" + evenement.getAnnonceur() + "')" );                 
+            String sql = "INSERT INTO evenement (nom, description, date, id_adresse) "
+                + "Values ('" + evenement.getNom()+ "', '" + evenement.getDescription() + "', '" + evenement.getDate() + "', " + evenement.getAdresse().getId() + ")";
+            stmt.executeUpdate(sql);                 
 
             ResultSet rs = stmt.executeQuery("SELECT MAX(id_evenement) FROM evenement");
             if (rs.next()){
@@ -126,7 +126,7 @@ public class EvenementDAO {
                 int id = rs.getInt("id_evenement");
                 String nom = rs.getString("nom");
                 String description = rs.getString("description");
-                Date date = rs.getDate("date");
+                String date = rs.getString("date");
                 Adresse adresse = AdresseDAO.trouver(cnx, id);
                 Annonceur annonceur = AnnonceursDAO.trouver(cnx, nom);
 
@@ -161,7 +161,7 @@ public class EvenementDAO {
                 
                 int id = rs.getInt("id_evenement");
                 String description = rs.getString("description");
-                Date date = rs.getDate("date");
+                String date = rs.getString("date");
                 Adresse adresse = AdresseDAO.trouver(cnx, id);
                 Annonceur annonceur = AnnonceursDAO.trouver(cnx, nom);
 
@@ -198,7 +198,7 @@ public class EvenementDAO {
                 
                 String nom = rs.getString("nom");
                 String description = rs.getString("description");
-                Date date = rs.getDate("date");
+                String date = rs.getString("date");
                 Adresse adresse = AdresseDAO.trouver(cnx, id);
                 Annonceur annonceur = AnnonceursDAO.trouver(cnx, nom);
 

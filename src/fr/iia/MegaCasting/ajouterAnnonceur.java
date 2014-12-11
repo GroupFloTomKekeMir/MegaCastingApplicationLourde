@@ -177,9 +177,10 @@ public class ajouterAnnonceur extends javax.swing.JFrame {
                 
         int numRue = (int) numeroSpinner.getValue();
         String rue = nomRueBox.getText();
-        int codePostal = Integer.parseInt(cpBox.getText());
+        String codePostal = cpBox.getText();
         String ville = villeBox.getText();
         String localisation = localisationBox.getText();
+        
         
         AnnonceursDAO annonceurDAO = new AnnonceursDAO();
         Annonceur annonceur = AnnonceursDAO.trouver(cnx, nom);
@@ -191,7 +192,8 @@ public class ajouterAnnonceur extends javax.swing.JFrame {
             try {
                 AnnonceursDAO.creer(cnx, annonceur);
                 
-            } catch (Exception ex) {
+            } 
+            catch (Exception ex) {
                 ex.printStackTrace();
             }
         }          

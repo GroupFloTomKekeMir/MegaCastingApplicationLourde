@@ -16,7 +16,7 @@ public class Evenement {
     private int id;
     private String nom;
     private String description;
-    private Date date;
+    private String date;
     private Adresse Adresse;
     private Annonceur Annonceur;
     private Media Media;
@@ -45,11 +45,11 @@ public class Evenement {
         this.description = description;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
     
@@ -69,7 +69,7 @@ public class Evenement {
         this.Annonceur = Annonceur;
     }
 
-    public Evenement(String nom, String description, Date date, Adresse Adresse, Annonceur Annonceur) {
+    public Evenement(String nom, String description, String date, Adresse Adresse, Annonceur Annonceur) {
         this.nom = nom;
         this.description = description;
         this.date = date;

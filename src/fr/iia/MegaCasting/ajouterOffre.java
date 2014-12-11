@@ -29,7 +29,7 @@ public class ajouterOffre extends javax.swing.JFrame {
     private Adresse adresse;
     private Media media;
     private int numero;
-    private int codePostal;
+    private String codePostal;
     private String rue;
     private String ville;
     private Connection cnx;
