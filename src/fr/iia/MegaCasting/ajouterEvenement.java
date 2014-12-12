@@ -11,11 +11,9 @@ import fr.iia.Class.Evenement;
 import fr.iia.Connection.JavaConnect;
 import fr.iia.DAO.AnnonceursDAO;
 import fr.iia.DAO.EvenementDAO;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -33,8 +31,9 @@ public class ajouterEvenement extends javax.swing.JFrame {
     public ajouterEvenement() {
         initComponents();
         JavaConnect.ImportDriver();
-        cnx = JavaConnect.ConnectDB();        
-        annonceurBoxActionPerformed(null);
+        cnx = JavaConnect.ConnectDB();
+        Fillcombo();
+        
     }
 
     /**
@@ -97,6 +96,7 @@ public class ajouterEvenement extends javax.swing.JFrame {
         descriptionBox.setRows(5);
         jScrollPane1.setViewportView(descriptionBox);
 
+        annonceurBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         annonceurBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 annonceurBoxActionPerformed(evt);
@@ -187,6 +187,23 @@ public class ajouterEvenement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Fillcombo() {
+        try {
+            String sql = "Select nom from evenement";
+            pst = cnx.prepareStatement(sql);
+            rs = pst.executeQuery();
+            
+            while (rs.next()) {                
+                String nom = rs.getString("nom");
+                annonceurBox.addItem(nom);
+            }
+            
+        } 
+        catch (Exception e) {
+        
+        }
+    }
+    
     private void boutonEnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonEnregistrerActionPerformed
 
         // TODO add your handling code here:
@@ -201,7 +218,7 @@ public class ajouterEvenement extends javax.swing.JFrame {
         String ville = villeBox.getText();
         String localisation = localisationBox.getText();
         
-        String nomAnnonceur = (String)annonceurBox.getSelectedItem();
+        String nomAnnonceur = annonceurBox.getName();
 
         EvenementDAO evenementDAO = new EvenementDAO();
         Evenement evenement = EvenementDAO.trouver(cnx, nom);
@@ -211,7 +228,7 @@ public class ajouterEvenement extends javax.swing.JFrame {
         if (evenement == null) {
             Adresse adresse = new Adresse(numRue, codePostal, rue, ville, localisation);
             Annonceur annonceur = AnnonceursDAO.trouver(cnx, nomAnnonceur);
-            evenement = new Evenement(nom, description, dateEvenement, adresse, annonceur);
+            evenement = new Evenement(nom, description, dateEvenement, adresse, null);
 
             try {
                 EvenementDAO.creer(cnx, evenement);
@@ -223,19 +240,7 @@ public class ajouterEvenement extends javax.swing.JFrame {
     }//GEN-LAST:event_boutonEnregistrerActionPerformed
 
     private void annonceurBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annonceurBoxActionPerformed
-        try {
-            String sql = "Select nom from annonceur";
-            pst = cnx.prepareStatement(sql);
-            rs = pst.executeQuery();
-            
-            while (rs.next()) {                
-                String nom = rs.getString("nom");
-                annonceurBox.addItem(nom);
-            }
-        } 
-        catch (Exception e) {
-        
-        }
+
     }//GEN-LAST:event_annonceurBoxActionPerformed
 
     /**

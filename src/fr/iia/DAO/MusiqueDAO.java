@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class MusiqueDAO {
     public static void creer(Connection cnx, Musique mus) throws Exception{
                
-        Musique m = trouver(cnx, mus.getTitre());
+        Musique m = trouver(cnx, mus.getTitre(), mus.getUtilisateur());
         if(m != null){
             throw new Exception("'" + mus.getTitre() + " " + mus.getUtilisateur().getNom_artiste() + "' existe déja !");
         }
@@ -28,9 +28,9 @@ public class MusiqueDAO {
         Statement stmt = null;
 
         try{
-            stmt = cnx.createStatement();
-            stmt.executeUpdate("INSERT INTO musique (titre, description, genre, id_utilisateur) "
-                    + "Values ('" + mus.getTitre() + "', '" +  mus.getDescription() + "', '" + mus.getGenre() + "', " + mus.getUtilisateur().getId() + ")" );
+            stmt = stmt = cnx.createStatement();
+            stmt.executeUpdate("INSERT INTO musique (titre, artiste, description, genre, id_utilisateur) "
+                    + "Values ('" + mus.getTitre() + "', '" + "', '" +  mus.getDescription() + "', '" + mus.getGenre() + "', '" + mus.getUtilisateur().getId() + ")" );
 
             ResultSet rs = stmt.executeQuery("SELECT MAX(id_musique) FROM musique");
             if (rs.next()){
@@ -57,25 +57,22 @@ public class MusiqueDAO {
         }
     } 
     
-    public static Musique trouver(Connection cnx, String titre){
+    public static Musique trouver(Connection cnx, String titre, Utilisateur idUtil){
         
         Musique musique = null;
         Statement stmt = null;
         try{			
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("Select id_musique, description, genre, id_utilisateur "
-                    + "From musique "
-                    + "WHERE titre = '" + titre + "';");
+            ResultSet rs = stmt.executeQuery("Select id_musique, description, genre "
+                    + "From musique m, utilisateur u "
+                    + "WHERE m.id_utilisateur = u.id_utilisateur AND titre = '" + titre + "' AND id_utilisateur = '" + idUtil + "';");
             if(rs.next()){
                             
                 int id = rs.getInt("id_musique");
                 String description = rs.getString("description");
                 String genre = rs.getString("genre");
-                int idUtil = rs.getInt("id_utilisateur");
-                
-                Utilisateur utilisateur = UtilisateurDAO.trouver(cnx, idUtil);
 
-                musique = new Musique(titre, description, genre, utilisateur);
+                musique = new Musique(titre, description, genre, idUtil);
                 //personne.setAge(age);
                 musique.setId(id);
             }
