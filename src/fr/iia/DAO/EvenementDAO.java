@@ -33,8 +33,8 @@ public class EvenementDAO {
         try{
 
             stmt = cnx.createStatement();
-            String sql = "INSERT INTO evenement (nom, description, date, id_adresse) "
-                + "Values ('" + evenement.getNom()+ "', '" + evenement.getDescription() + "', '" + evenement.getDate() + "', " + evenement.getAdresse().getId() + ")";
+            String sql = "INSERT INTO evenement (nom, description, date, id_adresse, id_annonceur) "
+                + "Values ('" + evenement.getNom()+ "', '" + evenement.getDescription() + "', '" + evenement.getDateEvenement() + "', " + evenement.getAdresse().getId() + ", " + evenement.getAnnonceur().getId() + ")";
             stmt.executeUpdate(sql);                 
 
             ResultSet rs = stmt.executeQuery("SELECT MAX(id_evenement) FROM evenement");
@@ -96,7 +96,7 @@ public class EvenementDAO {
         try{			
             stmt = cnx.createStatement();
             stmt.executeUpdate("UPDATE media "
-                + "SET nom = '" + evenement.getNom() + "', description = '" + evenement.getDescription() + "', date = '" + evenement.getDate() + "', id_adresse = '" + evenement.getAdresse() + "', id_annonceur = '" + evenement.getAnnonceur()+ " "
+                + "SET nom = '" + evenement.getNom() + "', description = '" + evenement.getDescription() + "', date = '" + evenement.getDateEvenement() + "', id_adresse = '" + evenement.getAdresse() + "', id_annonceur = '" + evenement.getAnnonceur()+ " "
                 + "WHERE id_evenement = " + evenement.getId());
 
 
@@ -115,7 +115,7 @@ public class EvenementDAO {
     }	
 
     public static ArrayList<Evenement> lister(Connection cnx){
-        ArrayList<Evenement> ListEvenement = new ArrayList();
+        ArrayList<Evenement> listEvenement = new ArrayList();
         Statement stmt = null;
         try{
 
@@ -127,8 +127,11 @@ public class EvenementDAO {
                 String nom = rs.getString("nom");
                 String description = rs.getString("description");
                 String date = rs.getString("date");
-                Adresse adresse = AdresseDAO.trouver(cnx, id);
-                Annonceur annonceur = AnnonceursDAO.trouver(cnx, nom);
+                
+                int id_adresse = rs.getInt("id_adresse");
+                Adresse adresse = AdresseDAO.trouver(cnx, id_adresse);
+                int id_annonceur = rs.getInt("id_annonceur");
+                Annonceur annonceur = AnnonceursDAO.trouver(cnx, id_annonceur);
 
                 Evenement evenement = new Evenement(nom, description, date, adresse, annonceur);
                 evenement.setId(id);
@@ -145,7 +148,7 @@ public class EvenementDAO {
                 }
             }
         }
-        return ListEvenement;
+        return listEvenement;
     }
 
     public static Evenement trouver(Connection cnx, String nom){

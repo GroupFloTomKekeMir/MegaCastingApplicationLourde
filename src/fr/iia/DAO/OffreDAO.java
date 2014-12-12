@@ -14,15 +14,19 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Calendar;
+import java.util.TimeZone;
+
 
 /**
  *
  * @author Enzo
  */
 public class OffreDAO {
-    public static void creer(Connection cnx, Offre off, Annonceur ann, Contrat cont, Diffuseur dif, Metier met) throws Exception{
+    public static void creer(Connection cnx, Offre off) throws Exception{
                
         Offre o = trouver(cnx, off.getReference());
         
@@ -33,9 +37,11 @@ public class OffreDAO {
         Statement stmt = null;
 
         try{
-            stmt = stmt = cnx.createStatement();
-            stmt.executeUpdate("INSERT INTO offre (titre, reference, date_debut_publi, fin_publi, nbr_poste, descr_poste, descr_profil, duree_contrat, id_contrat, id_annonceur, id_difuseur, id_metier) "
-                + "Values ('" + off.getTitre() + "', '" + off.getReference() + "', '" +  off.getDate_debut_publi() + "', '" + off.getFin_publi() + "', '" + off.getNbr_poste() + "', '" + off.getDescription_poste() + "', '" + off.getDescription_profil() + "', '" + off.getContrat().getId() + "', '" + off.getAnnonceur().getId() + "', '" + off.getDiffuseur().getId() + "', '" + off.getMetier().getId() + "')" );
+            stmt = cnx.createStatement();
+            String sql = "INSERT INTO offre (titre, reference, date_debut_publi, fin_publi, nbr_poste, descr_poste, descr_profil, duree_contrat, id_contrat, id_annonceur, id_diffuseur, id_metier) "
+                + "Values ('" + off.getTitre() + "', '" + off.getReference() + "', '" +  off.getDate_debut_publi() + "', '" + off.getFin_publi() + "', " + off.getNbr_poste() + ", '" + off.getDescription_poste() + "', '" + off.getDescription_profil() + "', " + off.getDuree() + ", " + off.getContrat().getId() + ", " + off.getAnnonceur().getId() + ", " + off.getDiffuseur().getId() + ", " + off.getMetier().getId() + ")";
+                                                                                                                                                                                                                                                                                            
+            stmt.executeUpdate(sql);
 
             ResultSet rs = stmt.executeQuery("SELECT MAX(id_offre) FROM offre");
             if (rs.next()){
@@ -85,14 +91,14 @@ public class OffreDAO {
                 
                 int id = rs.getInt("id_offre");
                 String titre = rs.getString("titre");
-                Date dateDebutPubli = rs.getDate("date_debut_publi");
-                Date dateFinPubli = rs.getDate("fin_publi");
+                String dateDebutPubli = rs.getString("date_debut_publi");
+                String dateFinPubli = rs.getString("fin_publi");
                 int nbrPoste = rs.getInt("nbr_poste");
                 String descrPoste = rs.getString("descr_poste");
                 String descrProfil = rs.getString("descr_profil");
                 int dureeContrat = rs.getInt("duree_contrat");
                 
-                offre = new Offre(titre, reference, dateDebutPubli, dateFinPubli, nbrPoste, descrPoste, descrProfil, nbrPoste, contrat, annonceur, diffuseur, metier);
+                offre = new Offre(titre, reference, dateDebutPubli, dateFinPubli, nbrPoste, descrPoste, descrProfil, dureeContrat, contrat, annonceur, diffuseur, metier);
                 //personne.setAge(age);
                 offre.setId(id);
             }
@@ -135,14 +141,14 @@ public class OffreDAO {
                
                 String titre = rs.getString("titre");
                 String reference = rs.getString("reference");
-                Date dateDebutPubli = rs.getDate("date_debut_publi");
-                Date dateFinPubli = rs.getDate("fin_publi");
+                String dateDebutPubli = rs.getString("date_debut_publi");
+                String dateFinPubli = rs.getString("fin_publi");
                 int nbrPoste = rs.getInt("nbr_poste");
                 String descrPoste = rs.getString("descr_poste");
                 String descrProfil = rs.getString("descr_profil");
                 int dureeContrat = rs.getInt("duree_contrat");
                 
-                offre = new Offre(titre, reference, dateDebutPubli, dateFinPubli, nbrPoste, descrPoste, descrProfil, nbrPoste, contrat, annonceur, diffuseur, metier);
+                offre = new Offre(titre, reference, dateDebutPubli, dateFinPubli, nbrPoste, descrPoste, descrProfil, dureeContrat, contrat, annonceur, diffuseur, metier);
                 //personne.setAge(age);
                 offre.setId(id);
             }
@@ -231,8 +237,8 @@ public class OffreDAO {
                 int id = rs.getInt("id_offre");
                 String titre = rs.getString("titre");
                 String reference = rs.getString("reference");
-                Date dateDebutPubli = rs.getDate("date_debut_publi");
-                Date dateFinPubli = rs.getDate("fin_publi");
+                String dateDebutPubli = rs.getString("date_debut_publi");
+                String dateFinPubli = rs.getString("fin_publi");
                 int nbrPoste = rs.getInt("nbr_poste");               
                 String descrPoste = rs.getString("descr_poste");
                 String descrProfil = rs.getString("descr_profil");
@@ -248,7 +254,7 @@ public class OffreDAO {
                 Annonceur annonceur = AnnonceursDAO.trouver(cnx, intAnnonceur);
                 Diffuseur diffuseur = DiffuseursDAO.trouver(cnx, intDiffuseur);
 
-                Offre offre = new Offre(titre, reference, dateDebutPubli, dateFinPubli, nbrPoste, descrPoste, descrProfil, nbrPoste, contrat, annonceur, diffuseur, metier);
+                Offre offre = new Offre(titre, reference, dateDebutPubli, dateFinPubli, nbrPoste, descrPoste, descrProfil, dureeContrat, contrat, annonceur, diffuseur, metier);
                 offre.setId(id);
 
                 liste.add(offre);				

@@ -50,38 +50,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Musiques"/>
                   </Properties>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
-            <Menu class="javax.swing.JMenu" name="modifierMenuFichier">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Modifier"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="offreMenuModifier">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Offres"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="annonceurMenuModifier">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Annonceurs"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="diffuseurMenuModifier">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Diffuseurs"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="evenementMenuModifier">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Ev&#xe8;nements"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="musiqueMenuModifier">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Musiques"/>
-                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="musiqueMenuAjouterActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -182,15 +153,50 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="1261" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="428" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" pref="232" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="601" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="460" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" pref="138" max="-2" attributes="0"/>
+                      <EmptySpace pref="172" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Images/petitLogo.png"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="RefreshList"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="offrePanel">
           <Constraints>
@@ -206,7 +212,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="updateOffre" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="updateOffre" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="supprimerOffreBouton" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane1" min="-2" pref="1241" max="-2" attributes="0"/>
@@ -219,7 +229,10 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="updateOffre" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="updateOffre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="supprimerOffreBouton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="390" max="-2" attributes="0"/>
                       <EmptySpace pref="36" max="32767" attributes="0"/>
@@ -335,6 +348,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateOffreActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JButton" name="supprimerOffreBouton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Supprimer"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supprimerOffreBoutonActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="annonceurPanel">
@@ -352,6 +373,8 @@
                   <Component id="jScrollPane2" pref="1261" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="updateAnnonceurs" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="supprimerAnnonceurBouton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -359,7 +382,10 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="updateAnnonceurs" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="updateAnnonceurs" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="supprimerAnnonceurBouton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="392" max="-2" attributes="0"/>
                       <EmptySpace pref="39" max="32767" attributes="0"/>
@@ -454,6 +480,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateAnnonceursActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JButton" name="supprimerAnnonceurBouton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Supprimer"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supprimerAnnonceurBoutonActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="diffuseurPanel">
@@ -470,7 +504,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="updateDiffuseur" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="1176" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="supprimerDiffuseurBouton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane6" pref="1261" max="32767" attributes="0"/>
               </Group>
@@ -478,7 +514,10 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="updateDiffuseur" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="updateDiffuseur" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="supprimerDiffuseurBouton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane6" min="-2" pref="392" max="-2" attributes="0"/>
                       <EmptySpace pref="39" max="32767" attributes="0"/>
@@ -573,6 +612,14 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="supprimerDiffuseurBouton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Supprimer"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supprimerDiffuseurBoutonActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="evenementPanel">
@@ -589,6 +636,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="updateEvenement" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="supprimerEvenementBouton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane4" pref="1261" max="32767" attributes="0"/>
@@ -597,7 +646,10 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="updateEvenement" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="updateEvenement" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="supprimerEvenementBouton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane4" min="-2" pref="390" max="-2" attributes="0"/>
                       <EmptySpace pref="41" max="32767" attributes="0"/>
@@ -616,13 +668,13 @@
                 <Component class="javax.swing.JTable" name="evenementTab">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="9" rowCount="4">
+                      <Table columnCount="9" rowCount="0">
                         <Column editable="true" title="Nom" type="java.lang.String"/>
                         <Column editable="true" title="Description" type="java.lang.String"/>
                         <Column editable="true" title="Date" type="java.lang.String"/>
                         <Column editable="true" title="N&#xb0; Rue" type="java.lang.Integer"/>
                         <Column editable="true" title="Nom Rue" type="java.lang.String"/>
-                        <Column editable="true" title="Code Postal" type="java.lang.Integer"/>
+                        <Column editable="true" title="Code Postal" type="java.lang.String"/>
                         <Column editable="true" title="Ville" type="java.lang.String"/>
                         <Column editable="true" title="Region" type="java.lang.String"/>
                         <Column editable="true" title="Annonceur" type="java.lang.String"/>
@@ -689,6 +741,14 @@
                 <Property name="text" type="java.lang.String" value="Mise &#xe0; jour"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JButton" name="supprimerEvenementBouton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Supprimer"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supprimerEvenementBoutonActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="musiquePanel">
@@ -707,6 +767,8 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="updateMusique" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="supprimerMusiqueBouton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane5" pref="1251" max="32767" attributes="0"/>
@@ -718,7 +780,10 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="updateMusique" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="updateMusique" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="supprimerMusiqueBouton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane5" min="-2" pref="387" max="-2" attributes="0"/>
                       <EmptySpace pref="44" max="32767" attributes="0"/>
@@ -779,6 +844,14 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Mise &#xe0; jour"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="supprimerMusiqueBouton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Supprimer"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supprimerMusiqueBoutonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

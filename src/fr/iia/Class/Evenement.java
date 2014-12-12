@@ -16,7 +16,7 @@ public class Evenement {
     private int id;
     private String nom;
     private String description;
-    private String date;
+    private String dateEvenement;
     private Adresse Adresse;
     private Annonceur Annonceur;
     private Media Media;
@@ -45,12 +45,12 @@ public class Evenement {
         this.description = description;
     }
 
-    public String getDate() {
-        return date;
+    public String getDateEvenement() {
+        return dateEvenement;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDateEvenement(String dateEvenement) {
+        this.dateEvenement = dateEvenement;
     }
     
     public Adresse getAdresse() {
@@ -69,10 +69,10 @@ public class Evenement {
         this.Annonceur = Annonceur;
     }
 
-    public Evenement(String nom, String description, String date, Adresse Adresse, Annonceur Annonceur) {
+    public Evenement(String nom, String description, String dateEvenement, Adresse Adresse, Annonceur Annonceur) {
         this.nom = nom;
         this.description = description;
-        this.date = date;
+        this.dateEvenement = dateEvenement;
         this.Adresse = Adresse;
         this.Annonceur = Annonceur;
     }
@@ -92,7 +92,7 @@ public class Evenement {
         if (!Objects.equals(this.description, other.description)) {
             return false;
         }
-        if (!Objects.equals(this.date, other.date)) {
+        if (!Objects.equals(this.dateEvenement, other.dateEvenement)) {
             return false;
         }
         if (!Objects.equals(this.Adresse, other.Adresse)) {

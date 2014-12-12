@@ -3,14 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/workspace/MegaCastingApplicationLourd/src/fr/iia/Class/Annonceur.java</file>
-            <file>file:/C:/workspace/MegaCastingApplicationLourd/src/fr/iia/MegaCasting/Login.java</file>
-            <file>file:/C:/workspace/MegaCastingApplicationLourd/src/fr/iia/DAO/AnnonceursDAO.java</file>
-            <file>file:/C:/workspace/MegaCastingApplicationLourd/src/fr/iia/DAO/DiffuseursDAO.java</file>
-            <file>file:/C:/workspace/MegaCastingApplicationLourd/src/fr/iia/Class/Adresse.java</file>
-            <file>file:/C:/workspace/MegaCastingApplicationLourd/src/fr/iia/MegaCasting/ajouterAnnonceur.java</file>
+            <file>file:/C:/workspace/MegaCastingApplicationLourd/src/fr/iia/DAO/EvenementDAO.java</file>
+            <file>file:/C:/workspace/MegaCastingApplicationLourd/src/fr/iia/DAO/ContratDAO.java</file>
+            <file>file:/C:/workspace/MegaCastingApplicationLourd/src/fr/iia/DAO/UtilisateurDAO.java</file>
+            <file>file:/C:/workspace/MegaCastingApplicationLourd/src/fr/iia/DAO/MusiqueDAO.java</file>
             <file>file:/C:/workspace/MegaCastingApplicationLourd/src/fr/iia/MegaCasting/MegaCastingMain.java</file>
+            <file>file:/C:/workspace/MegaCastingApplicationLourd/src/fr/iia/Class/Musique.java</file>
+            <file>file:/C:/workspace/MegaCastingApplicationLourd/src/fr/iia/MegaCasting/ajouterOffre.java</file>
             <file>file:/C:/workspace/MegaCastingApplicationLourd/src/fr/iia/DAO/OffreDAO.java</file>
+            <file>file:/C:/workspace/MegaCastingApplicationLourd/src/fr/iia/Class/Offre.java</file>
         </group>
     </open-files>
 </project-private>

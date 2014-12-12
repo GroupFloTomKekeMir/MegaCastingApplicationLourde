@@ -24,7 +24,7 @@ public class ContratDAO {
         Statement stmt = null;
         try{			
             stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery("Select libelle From contrat WHERE id__contrat = '" + id + "';");
+            ResultSet rs = stmt.executeQuery("Select libelle From contrat WHERE id_contrat = '" + id + "';");
             if(rs.next()){
                 String libelle = rs.getString("libelle");
 
