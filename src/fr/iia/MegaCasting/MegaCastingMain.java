@@ -83,12 +83,12 @@ public class MegaCastingMain extends javax.swing.JFrame {
     
     public void paintComponent(Graphics g){
     try {
-      Image img = ImageIO.read(new File("Fond.jpg"));
-      //g.drawImage(img, 50, 50, this);
-      //Pour une image de fond
-      g.drawImage(img, 50, 50, this.getWidth(), this.getHeight(), this);
+        Image img = ImageIO.read(new File("Fond.jpg"));
+        //g.drawImage(img, 50, 50, this);
+        //Pour une image de fond
+        g.drawImage(img, 50, 50, this.getWidth(), this.getHeight(), this);
     } catch (IOException e) {
-      e.printStackTrace();
+        e.printStackTrace();
     }  
   }        
 
@@ -216,10 +216,7 @@ public class MegaCastingMain extends javax.swing.JFrame {
 
         annonceurTab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nom", "Email", "Telephone", "N° rue", "Nom rue", "Code Postal", "Ville", "Region", "Logo"
@@ -271,10 +268,7 @@ public class MegaCastingMain extends javax.swing.JFrame {
 
         diffuseurTab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nom", "Email", "Telephone", "N° rue", "Nom rue", "Code Postal", "Ville", "Region", "Logo"
@@ -355,10 +349,7 @@ public class MegaCastingMain extends javax.swing.JFrame {
 
         musiqueTab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Titre", "Description", "Genre", "Artiste"
